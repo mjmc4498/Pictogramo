@@ -36,8 +36,35 @@ document.addEventListener('DOMContentLoaded', () => {
             utterance.lang = lang;
             speechSynthesis.speak(utterance);
         } else {
-            console.error('La API de síntesis de voz no es compatible con este navegador.');
+            showToast('La API de síntesis de voz no es compatible con este navegador.', 'danger');
         }
+    }
+
+    function showToast(message, type = 'info') {
+        const toastContainer = document.querySelector('.toast-container');
+        const toastEl = document.createElement('div');
+        toastEl.className = `toast align-items-center text-bg-${type} border-0`;
+        toastEl.setAttribute('role', 'alert');
+        toastEl.setAttribute('aria-live', 'assertive');
+        toastEl.setAttribute('aria-atomic', 'true');
+
+        toastEl.innerHTML = `
+            <div class="d-flex">
+                <div class="toast-body">
+                    ${message}
+                </div>
+                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+        `;
+
+        toastContainer.appendChild(toastEl);
+
+        const toast = new bootstrap.Toast(toastEl);
+        toast.show();
+
+        toastEl.addEventListener('hidden.bs.toast', () => {
+            toastEl.remove();
+        });
     }
 
     function createPictogramCard(pictogram, isSentenceCard = false) {
@@ -161,7 +188,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (sentenceText.length > 0) {
             speak(sentenceText.join(' '));
         } else {
-            alert('La frase está vacía.');
+            showToast('La frase está vacía.', 'warning');
         }
     });
 
@@ -172,7 +199,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('export-btn').addEventListener('click', () => {
         const sentence = JSON.parse(localStorage.getItem('sentence')) || [];
         if (sentence.length === 0) {
-            alert('No hay ninguna frase para exportar.');
+            showToast('No hay ninguna frase para exportar.', 'warning');
             return;
         }
 
@@ -203,11 +230,12 @@ document.addEventListener('DOMContentLoaded', () => {
                     sentenceBar.innerHTML = '';
                     importedSentence.forEach(p => addToSentence(p));
                     saveSentence();
+                    showToast('Frase importada con éxito.', 'success');
                 } else {
-                    alert('El archivo no tiene el formato correcto.');
+                    showToast('El archivo de importación no tiene el formato correcto.', 'danger');
                 }
             } catch (error) {
-                alert('Error al leer el archivo.');
+                showToast('Error al leer el archivo.', 'danger');
                 console.error(error);
             }
         };
@@ -232,12 +260,12 @@ document.addEventListener('DOMContentLoaded', () => {
         const imageFile = document.getElementById('pictogram-image').files[0];
 
         if (!text) {
-            alert('Por favor, ingrese un texto para el pictograma.');
+            showToast('Por favor, ingrese un texto para el pictograma.', 'danger');
             return;
         }
 
         if (!icon && !imageFile) {
-            alert('Por favor, elija un icono o suba una imagen.');
+            showToast('Por favor, elija un icono o suba una imagen.', 'danger');
             return;
         }
 
@@ -252,7 +280,7 @@ document.addEventListener('DOMContentLoaded', () => {
             addPictogramToList(newPictogram);
         } else if (imageFile) {
             if (imageFile.size > 1024 * 1024) { // 1MB limit
-                alert('La imagen es demasiado grande. Por favor, elija una imagen de menos de 1MB.');
+                showToast('La imagen es demasiado grande (máx 1MB).', 'danger');
                 return;
             }
             const reader = new FileReader();
