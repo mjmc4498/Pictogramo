@@ -28,6 +28,7 @@ document.addEventListener('DOMContentLoaded', () => {
         renderCategoryFilters();
         loadSentence();
         setupDragAndDrop();
+        $('#pictogram-icon-picker').iconpicker();
     }
 
     function speak(text, lang = 'es-ES') {
@@ -79,6 +80,17 @@ document.addEventListener('DOMContentLoaded', () => {
             card.innerHTML = `<i class="bi ${pictogram.icon}" style="font-size: 4rem;"></i><p>${pictogram.text}</p>`;
         } else {
             card.innerHTML = `<img src="${pictogram.image}" alt="${pictogram.text}"><p>${pictogram.text}</p>`;
+        }
+
+        if (pictogram.id.startsWith('custom-') && !isSentenceCard) {
+            const editBtn = document.createElement('button');
+            editBtn.className = 'btn btn-sm btn-outline-primary edit-btn';
+            editBtn.innerHTML = '<i class="bi bi-pencil"></i>';
+            editBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                openEditModal(pictogram);
+            });
+            card.appendChild(editBtn);
         }
 
         if (isSentenceCard) {
@@ -256,7 +268,7 @@ document.addEventListener('DOMContentLoaded', () => {
         e.preventDefault();
         const text = document.getElementById('pictogram-text').value.trim();
         const category = document.getElementById('pictogram-category').value.trim() || 'personalizado';
-        const icon = document.getElementById('pictogram-icon').value;
+        const icon = $('#pictogram-icon-picker').data('iconpicker').iconpickerValue;
         const imageFile = document.getElementById('pictogram-image').files[0];
 
         if (!text) {
@@ -292,14 +304,41 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+    function openEditModal(pictogram) {
+        document.getElementById('add-pictogram-form').dataset.editingId = pictogram.id;
+        document.getElementById('pictogram-text').value = pictogram.text;
+        document.getElementById('pictogram-category').value = pictogram.category;
+        document.getElementById('pictogram-icon').value = pictogram.icon || '';
+
+        const preview = document.getElementById('image-preview');
+        if (pictogram.image) {
+            preview.src = pictogram.image;
+            preview.style.display = 'block';
+        } else {
+            preview.style.display = 'none';
+        }
+
+        modal.style.display = 'block';
+    }
+
     function addPictogramToList(pictogram) {
-        pictograms.push(pictogram);
+        const editingId = document.getElementById('add-pictogram-form').dataset.editingId;
+        if (editingId) {
+            const index = pictograms.findIndex(p => p.id === editingId);
+            if (index > -1) {
+                pictograms[index] = pictogram;
+            }
+        } else {
+            pictograms.push(pictogram);
+        }
+
         saveCustomPictograms();
         renderPictograms();
         renderCategoryFilters(); // Update filters in case a new category was added
         modal.style.display = 'none';
         addPictogramForm.reset();
         document.getElementById('image-preview').style.display = 'none';
+        delete document.getElementById('add-pictogram-form').dataset.editingId;
     }
 
     document.getElementById('pictogram-image').addEventListener('change', (e) => {
