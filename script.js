@@ -151,7 +151,20 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // --- Customization, Export, Import ---
+    // --- Sentence Reading, Customization, Export, Import ---
+    document.getElementById('read-sentence-btn').addEventListener('click', () => {
+        const sentenceText = [];
+        sentenceBar.querySelectorAll('.sentence-pictogram').forEach(card => {
+            sentenceText.push(card.querySelector('p').textContent);
+        });
+
+        if (sentenceText.length > 0) {
+            speak(sentenceText.join(' '));
+        } else {
+            alert('La frase está vacía.');
+        }
+    });
+
     customModeBtn.addEventListener('click', () => {
         modal.style.display = 'block';
     });
@@ -213,39 +226,53 @@ document.addEventListener('DOMContentLoaded', () => {
 
     addPictogramForm.addEventListener('submit', (e) => {
         e.preventDefault();
-        const textInput = document.getElementById('pictogram-text');
-        const imageInput = document.getElementById('pictogram-image');
+        const text = document.getElementById('pictogram-text').value.trim();
+        const category = document.getElementById('pictogram-category').value.trim() || 'personalizado';
+        const icon = document.getElementById('pictogram-icon').value;
+        const imageFile = document.getElementById('pictogram-image').files[0];
 
-        const text = textInput.value.trim();
-        const imageFile = imageInput.files[0];
-
-        if (!text || !imageFile) {
-            alert('Por favor, complete todos los campos.');
+        if (!text) {
+            alert('Por favor, ingrese un texto para el pictograma.');
             return;
         }
 
-        if (imageFile.size > 1024 * 1024) { // 1MB limit
-            alert('La imagen es demasiado grande. Por favor, elija una imagen de menos de 1MB.');
+        if (!icon && !imageFile) {
+            alert('Por favor, elija un icono o suba una imagen.');
             return;
         }
 
-        const reader = new FileReader();
-        reader.onload = function(event) {
-            const newPictogram = {
-                id: `custom-${Date.now()}`,
-                text: text,
-                image: event.target.result,
-                category: 'personalizado'
-            };
-            pictograms.push(newPictogram);
-            saveCustomPictograms();
-            renderPictograms();
-            modal.style.display = 'none';
-            addPictogramForm.reset();
-            document.getElementById('image-preview').style.display = 'none';
+        const newPictogram = {
+            id: `custom-${Date.now()}`,
+            text: text,
+            category: category,
         };
-        reader.readAsDataURL(imageFile);
+
+        if (icon) {
+            newPictogram.icon = icon;
+            addPictogramToList(newPictogram);
+        } else if (imageFile) {
+            if (imageFile.size > 1024 * 1024) { // 1MB limit
+                alert('La imagen es demasiado grande. Por favor, elija una imagen de menos de 1MB.');
+                return;
+            }
+            const reader = new FileReader();
+            reader.onload = function(event) {
+                newPictogram.image = event.target.result;
+                addPictogramToList(newPictogram);
+            };
+            reader.readAsDataURL(imageFile);
+        }
     });
+
+    function addPictogramToList(pictogram) {
+        pictograms.push(pictogram);
+        saveCustomPictograms();
+        renderPictograms();
+        renderCategoryFilters(); // Update filters in case a new category was added
+        modal.style.display = 'none';
+        addPictogramForm.reset();
+        document.getElementById('image-preview').style.display = 'none';
+    }
 
     document.getElementById('pictogram-image').addEventListener('change', (e) => {
         const preview = document.getElementById('image-preview');
