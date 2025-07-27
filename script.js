@@ -6,20 +6,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const closeBtn = document.querySelector('.close-btn');
     const addPictogramForm = document.getElementById('add-pictogram-form');
 
-    // Default pictograms
-    const defaultPictograms = [
-        { id: 'yo', text: 'Yo', icon: 'bi-person', category: 'pronombres' },
-        { id: 'quiero', text: 'Quiero', icon: 'bi-hand-index-thumb', category: 'verbos' },
-        { id: 'comer', text: 'Comer', icon: 'bi-cup-straw', category: 'acciones' },
-        { id: 'beber', text: 'Beber', icon: 'bi-cup', category: 'acciones' },
-        { id: 'jugar', text: 'Jugar', icon: 'bi-joystick', category: 'acciones' },
-        { id: 'bano', text: 'Baño', icon: 'bi-door-open', category: 'lugares' },
-        { id: 'casa', text: 'Casa', icon: 'bi-house', category: 'lugares' },
-        { id: 'escuela', text: 'Escuela', icon: 'bi-building', category: 'lugares' },
-        { id: 'feliz', text: 'Feliz', icon: 'bi-emoji-smile', category: 'emociones' },
-        { id: 'triste', text: 'Triste', icon: 'bi-emoji-frown', category: 'emociones' },
-    ];
-
     let pictograms = [];
 
     function initialize() {
@@ -409,6 +395,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function loadCustomPictograms() {
         const customPictograms = JSON.parse(localStorage.getItem('customPictograms')) || [];
+        // Make a copy of the default data to avoid modifying the original array
+        const defaultPictograms = [...pictogramData];
         pictograms = [...defaultPictograms, ...customPictograms];
     }
 
