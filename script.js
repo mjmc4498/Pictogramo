@@ -8,16 +8,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Default pictograms
     const defaultPictograms = [
-        { id: 'yo', text: 'Yo', image: 'images/yo.png', category: 'pronombres' },
-        { id: 'quiero', text: 'Quiero', image: 'images/quiero.png', category: 'verbos' },
-        { id: 'comer', text: 'Comer', image: 'images/comer.png', category: 'acciones' },
-        { id: 'beber', text: 'Beber', image: 'images/beber.png', category: 'acciones' },
-        { id: 'jugar', text: 'Jugar', image: 'images/jugar.png', category: 'acciones' },
-        { id: 'bano', text: 'Baño', image: 'images/bano.png', category: 'lugares' },
-        { id: 'casa', text: 'Casa', image: 'images/casa.png', category: 'lugares' },
-        { id: 'escuela', text: 'Escuela', image: 'images/escuela.png', category: 'lugares' },
-        { id: 'feliz', text: 'Feliz', image: 'images/feliz.png', category: 'emociones' },
-        { id: 'triste', text: 'Triste', image: 'images/triste.png', category: 'emociones' },
+        { id: 'yo', text: 'Yo', icon: 'bi-person', category: 'pronombres' },
+        { id: 'quiero', text: 'Quiero', icon: 'bi-hand-index-thumb', category: 'verbos' },
+        { id: 'comer', text: 'Comer', icon: 'bi-cup-straw', category: 'acciones' },
+        { id: 'beber', text: 'Beber', icon: 'bi-cup', category: 'acciones' },
+        { id: 'jugar', text: 'Jugar', icon: 'bi-joystick', category: 'acciones' },
+        { id: 'bano', text: 'Baño', icon: 'bi-door-open', category: 'lugares' },
+        { id: 'casa', text: 'Casa', icon: 'bi-house', category: 'lugares' },
+        { id: 'escuela', text: 'Escuela', icon: 'bi-building', category: 'lugares' },
+        { id: 'feliz', text: 'Feliz', icon: 'bi-emoji-smile', category: 'emociones' },
+        { id: 'triste', text: 'Triste', icon: 'bi-emoji-frown', category: 'emociones' },
     ];
 
     let pictograms = [];
@@ -25,6 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function initialize() {
         loadCustomPictograms();
         renderPictograms();
+        renderCategoryFilters();
         loadSentence();
         setupDragAndDrop();
     }
@@ -47,7 +48,11 @@ document.addEventListener('DOMContentLoaded', () => {
         card.setAttribute('role', 'button');
         card.setAttribute('aria-label', pictogram.text);
 
-        card.innerHTML = `<img src="${pictogram.image}" alt="${pictogram.text}"><p>${pictogram.text}</p>`;
+        if (pictogram.icon) {
+            card.innerHTML = `<i class="bi ${pictogram.icon}" style="font-size: 4rem;"></i><p>${pictogram.text}</p>`;
+        } else {
+            card.innerHTML = `<img src="${pictogram.image}" alt="${pictogram.text}"><p>${pictogram.text}</p>`;
+        }
 
         if (isSentenceCard) {
             card.draggable = true;
@@ -63,12 +68,38 @@ document.addEventListener('DOMContentLoaded', () => {
         return card;
     }
 
-    function renderPictograms() {
+    function renderPictograms(category = 'all') {
         pictogramGrid.innerHTML = '';
-        pictograms.forEach(pictogram => {
+        const filteredPictograms = category === 'all'
+            ? pictograms
+            : pictograms.filter(p => p.category === category);
+
+        filteredPictograms.forEach(pictogram => {
             const card = createPictogramCard(pictogram);
             pictogramGrid.appendChild(card);
         });
+    }
+
+    function renderCategoryFilters() {
+        const categoryFilterBar = document.getElementById('category-filter-bar');
+        const categories = ['all', ...new Set(pictograms.map(p => p.category))];
+
+        categoryFilterBar.innerHTML = '';
+        categories.forEach(category => {
+            const button = document.createElement('button');
+            button.className = 'btn btn-secondary me-2';
+            button.textContent = category.charAt(0).toUpperCase() + category.slice(1);
+            button.dataset.category = category;
+            button.addEventListener('click', (e) => {
+                renderPictograms(category);
+                // Highlight active button
+                categoryFilterBar.querySelectorAll('.btn').forEach(btn => btn.classList.remove('btn-primary'));
+                e.target.classList.add('btn-primary');
+            });
+            categoryFilterBar.appendChild(button);
+        });
+        // Set 'all' as active by default
+        categoryFilterBar.querySelector('[data-category="all"]').classList.add('btn-primary');
     }
 
     function handlePictogramSelection(pictogram, card) {
@@ -120,9 +151,54 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // --- Customization Mode ---
+    // --- Customization, Export, Import ---
     customModeBtn.addEventListener('click', () => {
         modal.style.display = 'block';
+    });
+
+    document.getElementById('export-btn').addEventListener('click', () => {
+        const sentence = JSON.parse(localStorage.getItem('sentence')) || [];
+        if (sentence.length === 0) {
+            alert('No hay ninguna frase para exportar.');
+            return;
+        }
+
+        const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(sentence));
+        const downloadAnchorNode = document.createElement('a');
+        downloadAnchorNode.setAttribute("href",     dataStr);
+        downloadAnchorNode.setAttribute("download", "frase.json");
+        document.body.appendChild(downloadAnchorNode); // required for firefox
+        downloadAnchorNode.click();
+        downloadAnchorNode.remove();
+    });
+
+    document.getElementById('import-btn').addEventListener('click', () => {
+        document.getElementById('import-file-input').click();
+    });
+
+    document.getElementById('import-file-input').addEventListener('change', (e) => {
+        const file = e.target.files[0];
+        if (!file) {
+            return;
+        }
+
+        const reader = new FileReader();
+        reader.onload = (event) => {
+            try {
+                const importedSentence = JSON.parse(event.target.result);
+                if (Array.isArray(importedSentence)) {
+                    sentenceBar.innerHTML = '';
+                    importedSentence.forEach(p => addToSentence(p));
+                    saveSentence();
+                } else {
+                    alert('El archivo no tiene el formato correcto.');
+                }
+            } catch (error) {
+                alert('Error al leer el archivo.');
+                console.error(error);
+            }
+        };
+        reader.readAsText(file);
     });
 
     closeBtn.addEventListener('click', () => {
