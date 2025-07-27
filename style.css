@@ -195,3 +195,22 @@ h1, h2 {
 .toast-container {
     z-index: 1080;
 }
+
+#custom-modal .modal-dialog {
+    max-width: 500px;
+    margin: 1.75rem auto;
+}
+
+#custom-modal .modal-content {
+    max-height: 80vh;
+    overflow-y: auto;
+}
+
+.iconpicker-search {
+    width: 100% !important;
+}
+
+.iconpicker .iconpicker-items {
+    max-height: 200px;
+    overflow-y: auto;
+}
