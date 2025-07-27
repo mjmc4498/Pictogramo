@@ -81,7 +81,7 @@ document.addEventListener('DOMContentLoaded', () => {
         card.setAttribute('aria-label', pictogram.text);
 
         if (pictogram.icon) {
-            card.innerHTML = `<i class="bi ${pictogram.icon}" style="font-size: 4rem;"></i><p>${pictogram.text}</p>`;
+            card.innerHTML = `<i class="bi ${pictogram.icon}"></i><p>${pictogram.text}</p>`;
         } else {
             card.innerHTML = `<img src="${pictogram.image}" alt="${pictogram.text}"><p>${pictogram.text}</p>`;
         }

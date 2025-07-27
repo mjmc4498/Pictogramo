@@ -56,8 +56,9 @@ h1, h2 {
 }
 
 .pictogram-card i {
-    font-size: 3.5rem !important;
+    font-size: 3.5rem;
     color: var(--primary-color);
+    line-height: 1;
 }
 
 .pictogram-card img {
