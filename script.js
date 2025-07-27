@@ -83,14 +83,28 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         if (pictogram.id.startsWith('custom-') && !isSentenceCard) {
+            const buttonGroup = document.createElement('div');
+            buttonGroup.className = 'btn-group pictogram-actions';
+
             const editBtn = document.createElement('button');
-            editBtn.className = 'btn btn-sm btn-outline-primary edit-btn';
+            editBtn.className = 'btn btn-sm btn-outline-primary';
             editBtn.innerHTML = '<i class="bi bi-pencil"></i>';
             editBtn.addEventListener('click', (e) => {
                 e.stopPropagation();
                 openEditModal(pictogram);
             });
-            card.appendChild(editBtn);
+
+            const deleteBtn = document.createElement('button');
+            deleteBtn.className = 'btn btn-sm btn-outline-danger';
+            deleteBtn.innerHTML = '<i class="bi bi-trash"></i>';
+            deleteBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                openDeleteConfirmation(pictogram);
+            });
+
+            buttonGroup.appendChild(editBtn);
+            buttonGroup.appendChild(deleteBtn);
+            card.appendChild(buttonGroup);
         }
 
         if (isSentenceCard) {
@@ -304,11 +318,33 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+    function openDeleteConfirmation(pictogram) {
+        const confirmationModal = new bootstrap.Modal(document.getElementById('delete-confirm-modal'));
+        const modalBody = document.getElementById('delete-modal-body');
+        modalBody.textContent = `¿Estás seguro de que quieres eliminar el pictograma "${pictogram.text}"? Esta acción no se puede deshacer.`;
+
+        const confirmBtn = document.getElementById('confirm-delete-btn');
+        confirmBtn.onclick = () => {
+            deletePictogram(pictogram.id);
+            confirmationModal.hide();
+        };
+
+        confirmationModal.show();
+    }
+
+    function deletePictogram(pictogramId) {
+        pictograms = pictograms.filter(p => p.id !== pictogramId);
+        saveCustomPictograms();
+        renderPictograms();
+        renderCategoryFilters();
+        showToast('Pictograma eliminado con éxito.', 'success');
+    }
+
     function openEditModal(pictogram) {
         document.getElementById('add-pictogram-form').dataset.editingId = pictogram.id;
         document.getElementById('pictogram-text').value = pictogram.text;
         document.getElementById('pictogram-category').value = pictogram.category;
-        document.getElementById('pictogram-icon').value = pictogram.icon || '';
+        $('#pictogram-icon-picker').iconpicker('setIcon', pictogram.icon || '');
 
         const preview = document.getElementById('image-preview');
         if (pictogram.image) {
