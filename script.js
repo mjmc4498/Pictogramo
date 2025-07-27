@@ -28,7 +28,11 @@ document.addEventListener('DOMContentLoaded', () => {
         renderCategoryFilters();
         loadSentence();
         setupDragAndDrop();
-        $('#pictogram-icon-picker').iconpicker();
+
+        // Iconpicker event listener
+        $('#pictogram-icon-picker').on('change', function(e) {
+            document.getElementById('pictogram-icon').value = e.icon;
+        });
     }
 
     function speak(text, lang = 'es-ES') {
@@ -219,6 +223,14 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     customModeBtn.addEventListener('click', () => {
+        // Reset form for new entry
+        addPictogramForm.reset();
+        delete document.getElementById('add-pictogram-form').dataset.editingId;
+        document.getElementById('image-preview').style.display = 'none';
+
+        // Initialize icon picker
+        $('#pictogram-icon-picker').iconpicker();
+
         modal.style.display = 'block';
     });
 
@@ -282,7 +294,7 @@ document.addEventListener('DOMContentLoaded', () => {
         e.preventDefault();
         const text = document.getElementById('pictogram-text').value.trim();
         const category = document.getElementById('pictogram-category').value.trim() || 'personalizado';
-        const icon = $('#pictogram-icon-picker').data('iconpicker').iconpickerValue;
+        const icon = document.getElementById('pictogram-icon').value;
         const imageFile = document.getElementById('pictogram-image').files[0];
 
         if (!text) {
