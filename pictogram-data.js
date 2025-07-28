@@ -1,3 +1,22 @@
+const categoryData = {
+    'Personas': { icon: 'mdi:account-group' },
+    'Acciones': { icon: 'mdi:run' },
+    'Preguntas': { icon: 'mdi:help-box' },
+    'Pequeñas Palabras': { icon: 'mdi:format-letter-case' },
+    'Comida': { icon: 'mdi:food-apple' },
+    'Ropa': { icon: 'mdi:tshirt-crew' },
+    'Animales': { icon: 'mdi:dog' },
+    'Juguetes': { icon: 'mdi:toy-brick' },
+    'Objetos': { icon: 'mdi:lightbulb' },
+    'Lugares': { icon: 'mdi:home' },
+    'Sentimientos': { icon: 'mdi:emoticon-happy' },
+    'Conceptos': { icon: 'mdi:lightbulb-on' },
+    'Tiempo': { icon: 'mdi:calendar-clock' },
+    'Clima': { icon: 'mdi:weather-partly-cloudy' },
+    'Colores': { icon: 'mdi:palette' },
+    'Números': { icon: 'mdi:numeric' }
+};
+
 const pictogramData = [
     // Core: Personas y Pronombres
     { id: 'yo', category: 'Personas', variations: [{ text: 'Yo', icon: 'mdi:account' }], nouns: [], synonyms: [], antonyms: [] },

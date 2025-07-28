@@ -132,7 +132,8 @@ document.addEventListener('DOMContentLoaded', () => {
         categories.forEach(category => {
             const categoryCard = document.createElement('div');
             categoryCard.className = 'pictogram-card';
-            categoryCard.innerHTML = `<p>${category}</p>`;
+            const categoryIcon = categoryData[category] ? categoryData[category].icon : 'mdi:help-box';
+            categoryCard.innerHTML = `<iconify-icon icon="${categoryIcon}" style="font-size: 4rem;"></iconify-icon><p>${category}</p>`;
             categoryCard.addEventListener('click', () => {
                 categoryView.classList.add('d-none');
                 pictogramView.classList.remove('d-none');
