@@ -186,6 +186,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const sentencePictogram = document.createElement('div');
         sentencePictogram.className = 'pictogram-card sentence-pictogram';
         sentencePictogram.dataset.id = pictogramId;
+        sentencePictogram.draggable = true;
 
         if (variation.icon) {
             sentencePictogram.innerHTML = `<iconify-icon icon="${variation.icon}" style="font-size: 3.5rem;"></iconify-icon><p>${variation.text}</p>`;
