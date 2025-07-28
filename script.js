@@ -226,42 +226,49 @@ document.addEventListener('DOMContentLoaded', () => {
     const suggestionRules = [
         {
             condition: (sentence) => sentence.length === 0,
-            suggestions: () => pictograms.filter(p => p.category === 'Personas' || p.category === 'Negación y afirmación')
+            suggestions: () => pictograms.filter(p => ['Personas', 'Negación y afirmación', 'Normas sociales y expresiones de cortesía'].includes(p.category))
         },
         {
             condition: (sentence) => {
                 const last = sentence[sentence.length - 1];
-                return last && (last.category === 'Personas' || last.category === 'Familia y relaciones');
+                return last && ['Personas', 'Familia y relaciones', 'Profesiones y roles'].includes(last.category);
             },
-            suggestions: () => pictograms.filter(p => p.category === 'Acciones' || p.category === 'Verbos básicos')
+            suggestions: () => pictograms.filter(p => ['Acciones', 'Verbos básicos', 'Emociones', 'Sentimientos y estados internos'].includes(p.category))
         },
         {
             condition: (sentence) => {
                 const last = sentence[sentence.length - 1];
-                return last && (last.category === 'Acciones' || last.category === 'Verbos básicos');
+                return last && ['Acciones', 'Verbos básicos', 'Actividades recreativas y de ocio'].includes(last.category);
             },
-            suggestions: () => pictograms.filter(p => ['Objetos', 'Comida y bebida', 'Lugares', 'Animales', 'Personas', 'Negación y afirmación'].includes(p.category))
+            suggestions: () => pictograms.filter(p => ['Objetos', 'Comida y bebida', 'Lugares', 'Animales', 'Personas', 'Negación y afirmación', 'Materiales escolares y de oficina', 'Juegos y juguetes'].includes(p.category))
         },
         {
             condition: (sentence) => {
                 const last = sentence[sentence.length - 1];
-                return last && (last.category === 'Objetos' || last.category === 'Comida y bebida' || last.category === 'Animales');
+                return last && ['Objetos', 'Comida y bebida', 'Animales', 'Materiales escolares y de oficina', 'Juegos y juguetes', 'Instrumentos musicales'].includes(last.category);
             },
-            suggestions: () => pictograms.filter(p => p.category === 'Acciones' || p.category === 'Verbos básicos' || p.category === 'Negación y afirmación')
+            suggestions: () => pictograms.filter(p => ['Acciones', 'Verbos básicos', 'Negación y afirmación', 'Conceptos abstractos'].includes(p.category))
         },
         {
             condition: (sentence) => {
                 const last = sentence[sentence.length - 1];
-                return last && last.category === 'Emociones';
+                return last && ['Emociones', 'Sentimientos y estados internos', 'Síntomas y estados físicos'].includes(last.category);
             },
-            suggestions: () => pictograms.filter(p => p.category === 'Personas' || p.category === 'Verbos básicos')
+            suggestions: () => pictograms.filter(p => ['Personas', 'Verbos básicos', 'Negación y afirmación'].includes(p.category))
         },
         {
             condition: (sentence) => {
                 const last = sentence[sentence.length - 1];
                 return last && last.category === 'Lugares';
             },
-            suggestions: () => pictograms.filter(p => p.category === 'Acciones' || p.category === 'Verbos básicos')
+            suggestions: () => pictograms.filter(p => ['Acciones', 'Verbos básicos', 'Transporte y viaje'].includes(p.category))
+        },
+        {
+            condition: (sentence) => {
+                const last = sentence[sentence.length - 1];
+                return last && ['Valores y comportamiento', 'Normas sociales y expresiones de cortesía'].includes(last.category);
+            },
+            suggestions: () => pictograms.filter(p => ['Personas', 'Acciones', 'Verbos básicos'].includes(p.category))
         }
     ];
 
