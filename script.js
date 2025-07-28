@@ -149,7 +149,7 @@ document.addEventListener('DOMContentLoaded', () => {
             speak(selectedVariation.text);
             card.classList.add('selected');
             setTimeout(() => card.classList.remove('selected'), 500);
-            addToSentence(selectedVariation);
+            addToSentence(selectedVariation, pictogram.id);
         }
     }
 
@@ -164,7 +164,7 @@ document.addEventListener('DOMContentLoaded', () => {
             item.addEventListener('click', (e) => {
                 e.stopPropagation();
                 speak(variation.text);
-                addToSentence(variation);
+                addToSentence(variation, pictogram.id);
                 popup.classList.add('d-none');
             });
             popup.appendChild(item);
@@ -182,9 +182,10 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
 
-    function addToSentence(variation) {
+    function addToSentence(variation, pictogramId) {
         const sentencePictogram = document.createElement('div');
         sentencePictogram.className = 'pictogram-card sentence-pictogram';
+        sentencePictogram.dataset.id = pictogramId;
 
         if (variation.icon) {
             sentencePictogram.innerHTML = `<iconify-icon icon="${variation.icon}" style="font-size: 3.5rem;"></iconify-icon><p>${variation.text}</p>`;
@@ -208,22 +209,28 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function saveSentence() {
-        const sentence = [];
+        const sentenceData = [];
         sentenceBar.querySelectorAll('.sentence-pictogram').forEach(card => {
+            const text = card.querySelector('p').textContent;
+            const icon = card.querySelector('iconify-icon')?.getAttribute('icon');
+            const image = card.querySelector('img')?.src;
             const id = card.dataset.id;
-            const pictogram = pictograms.find(p => p.id === id);
-            if(pictogram) {
-                sentence.push(pictogram);
-            }
+            sentenceData.push({ id, text, icon, image });
         });
-        localStorage.setItem('sentence', JSON.stringify(sentence));
+        localStorage.setItem('sentence', JSON.stringify(sentenceData));
     }
 
     function loadSentence() {
-        const savedSentence = JSON.parse(localStorage.getItem('sentence'));
-        if (savedSentence) {
-            savedSentence.forEach(pictogram => addToSentence(pictogram));
-        }
+        const savedSentence = JSON.parse(localStorage.getItem('sentence')) || [];
+        savedSentence.forEach(item => {
+            const pictogram = pictograms.find(p => p.id === item.id);
+            if (pictogram) {
+                const variation = pictogram.variations.find(v => v.text === item.text);
+                if (variation) {
+                    addToSentence(variation, pictogram.id);
+                }
+            }
+        });
     }
 
     // --- Sentence Reading, Customization, Export, Import ---
