@@ -1,12 +1,12 @@
 :root {
-    --primary-color: #5b37b7;
-    --secondary-color: #ffc107;
-    --background-color: #f4f7f6;
-    --font-color: #333;
-    --white: #fff;
-    --card-bg: #fff;
-    --card-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-    --card-hover-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    --primary-color: #4A90E2; /* A softer, more modern blue */
+    --secondary-color: #F5A623; /* A vibrant, friendly orange */
+    --background-color: #F9F9F9; /* A very light, clean gray */
+    --font-color: #333333; /* A dark, readable gray */
+    --white: #FFFFFF;
+    --card-bg: #FFFFFF;
+    --card-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    --card-hover-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
     --font-family: 'Poppins', sans-serif;
 }
 
@@ -30,34 +30,34 @@ h1, h2 {
 
 .pictogram-card {
     background-color: var(--card-bg);
-    border-radius: 12px;
+    border-radius: 15px; /* Softer corners */
     box-shadow: var(--card-shadow);
     cursor: pointer;
     text-align: center;
-    padding: 1.25rem;
+    padding: 1.5rem;
     transition: transform 0.25s ease, box-shadow 0.25s ease;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    border: 1px solid #e0e0e0;
+    border: 1px solid #EAEAEA;
     position: relative;
 }
 
 .pictogram-card:hover, .pictogram-card:focus-visible {
     transform: translateY(-5px);
     box-shadow: var(--card-hover-shadow);
-    outline: none;
+    outline: 2px solid var(--primary-color);
 }
 
 .pictogram-card.selected {
     transform: scale(1.05);
     box-shadow: 0 0 0 3px var(--primary-color);
-    background-color: #f0eaff;
+    background-color: #E9F2FC;
 }
 
-.pictogram-card i {
-    font-size: 3.5rem;
+.pictogram-card iconify-icon {
+    font-size: 4rem; /* Slightly larger icons */
     color: var(--primary-color);
     line-height: 1;
 }
@@ -82,17 +82,17 @@ h1, h2 {
     padding: 1.5rem;
     margin-top: 1rem;
     background-color: var(--white);
-    min-height: 160px;
-    border-radius: 12px;
+    min-height: 180px; /* Taller sentence bar */
+    border-radius: 15px;
     box-shadow: var(--card-shadow);
     align-items: center;
     justify-content: center;
-    border: 1px solid #e0e0e0;
+    border: 2px dashed #D0D0D0; /* Dashed border to indicate drop zone */
 }
 
 .sentence-container:empty::before {
     content: "Arrastra aquí tus pictogramas para formar una frase";
-    font-size: 1rem;
+    font-size: 1.1rem;
     color: #999;
     font-style: italic;
 }
@@ -112,9 +112,9 @@ h1, h2 {
 
 .sentence-pictogram .delete-btn {
     position: absolute;
-    top: -8px;
-    right: -8px;
-    background-color: #e74c3c;
+    top: -10px; /* Better positioning */
+    right: -10px;
+    background-color: #E74C3C;
     color: var(--white);
     border: none;
     border-radius: 50%;
@@ -141,14 +141,6 @@ h1, h2 {
     transform: scale(1.1);
 }
 
-.pictogram-card .edit-btn {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    opacity: 0;
-    transition: opacity 0.2s ease-in-out;
-}
-
 .pictogram-card .pictogram-actions {
     position: absolute;
     top: 10px;
@@ -161,32 +153,40 @@ h1, h2 {
     opacity: 1;
 }
 
-#category-filter-bar .btn {
-    border-radius: 20px;
-    padding: 0.5rem 1rem;
+.btn {
+    border-radius: 25px; /* More rounded buttons */
     font-weight: 500;
+    padding: 0.6rem 1.2rem;
     transition: all 0.2s ease;
 }
 
-#category-filter-bar .btn-secondary {
-    background-color: #e9ecef;
-    border-color: #e9ecef;
-    color: #495057;
-}
-
-#category-filter-bar .btn-secondary:hover {
-    background-color: #d8dde2;
-}
-
-#category-filter-bar .btn-primary {
+.btn-primary {
     background-color: var(--primary-color);
     border-color: var(--primary-color);
+}
+
+.btn-primary:hover {
+    opacity: 0.9;
+}
+
+.btn-secondary {
+    background-color: #6c757d;
+    border-color: #6c757d;
+}
+
+.btn-danger {
+    background-color: #dc3545;
+    border-color: #dc3545;
+}
+
+.btn-warning {
+    background-color: var(--secondary-color);
+    border-color: var(--secondary-color);
     color: var(--white);
-    box-shadow: 0 4px 10px rgba(91, 55, 183, 0.3);
 }
 
 .modal-content {
-    border-radius: 12px;
+    border-radius: 15px;
     border: none;
     box-shadow: 0 10px 30px rgba(0,0,0,0.1);
 }
@@ -197,21 +197,12 @@ h1, h2 {
 }
 
 #custom-modal .modal-dialog {
-    max-width: 500px;
+    max-width: 550px; /* Wider modal */
     margin: 1.75rem auto;
 }
 
 #custom-modal .modal-content {
     max-height: 80vh;
-    overflow-y: auto;
-}
-
-.iconpicker-search {
-    width: 100% !important;
-}
-
-.iconpicker .iconpicker-items {
-    max-height: 200px;
     overflow-y: auto;
 }
 
@@ -232,7 +223,7 @@ h1, h2 {
     align-items: center;
     height: 150px;
     border: 2px dashed #ccc;
-    border-radius: 12px;
+    border-radius: 15px;
     background-color: #f8f9fa;
 }
 
@@ -244,11 +235,11 @@ h1, h2 {
 
 @media (max-width: 576px) {
     .pictogram-card {
-        padding: 0.75rem;
+        padding: 1rem;
     }
 
-    .pictogram-card i {
-        font-size: 2.5rem;
+    .pictogram-card iconify-icon {
+        font-size: 3rem;
     }
 
     .pictogram-card p {
@@ -272,22 +263,40 @@ h1, h2 {
 #variations-popup {
     position: absolute;
     z-index: 1000;
-    min-width: 150px;
+    min-width: 160px;
     background-color: var(--white);
-    border-radius: 8px;
+    border-radius: 10px;
     padding: 0.5rem;
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
+    box-shadow: var(--card-shadow);
 }
 
 .variation-item {
     cursor: pointer;
-    padding: 0.5rem 1rem;
-    border-radius: 6px;
+    padding: 0.75rem 1.25rem;
+    border-radius: 8px;
     transition: background-color 0.2s;
 }
 
 .variation-item:hover {
-    background-color: var(--background-color);
+    background-color: #E9F2FC;
+    color: var(--primary-color);
+}
+
+.suggestion-container {
+    background-color: var(--white);
+    border-radius: 15px;
+    padding: 1.5rem;
+    box-shadow: var(--card-shadow);
+}
+
+.suggestion-container .pictogram-card {
+    padding: 1rem;
+    transform: scale(0.9);
+}
+
+.suggestion-container .pictogram-card:hover {
+    transform: scale(0.95);
 }

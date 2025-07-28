@@ -15,6 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
         renderCategoryView();
         loadSentence();
         setupDragAndDrop();
+        updateSuggestions();
 
         document.getElementById('back-to-categories-btn').addEventListener('click', () => {
             pictogramView.classList.add('d-none');
@@ -131,7 +132,8 @@ document.addEventListener('DOMContentLoaded', () => {
         categories.forEach(category => {
             const categoryCard = document.createElement('div');
             categoryCard.className = 'pictogram-card';
-            categoryCard.innerHTML = `<p>${category}</p>`;
+            const categoryIcon = categoryData[category] ? categoryData[category].icon : 'mdi:help-box';
+            categoryCard.innerHTML = `<iconify-icon icon="${categoryIcon}" style="font-size: 4rem;"></iconify-icon><p>${category}</p>`;
             categoryCard.addEventListener('click', () => {
                 categoryView.classList.add('d-none');
                 pictogramView.classList.remove('d-none');
@@ -202,11 +204,13 @@ document.addEventListener('DOMContentLoaded', () => {
             e.stopPropagation();
             sentencePictogram.remove();
             saveSentence();
+            updateSuggestions();
         });
 
         sentencePictogram.appendChild(deleteBtn);
         sentenceBar.appendChild(sentencePictogram);
         saveSentence();
+        updateSuggestions();
     }
 
     function saveSentence() {
@@ -217,6 +221,45 @@ document.addEventListener('DOMContentLoaded', () => {
             sentenceData.push({ id, text });
         });
         localStorage.setItem('sentence', JSON.stringify(sentenceData));
+    }
+
+    function updateSuggestions() {
+        const suggestionGrid = document.getElementById('suggestion-grid');
+        suggestionGrid.innerHTML = '';
+        const sentenceCards = sentenceBar.querySelectorAll('.sentence-pictogram');
+        let suggestions = [];
+
+        if (sentenceCards.length === 0) {
+            suggestions = pictograms.filter(p => p.category === 'Personas');
+        } else {
+            const lastPictogramId = sentenceCards[sentenceCards.length - 1].dataset.id;
+            const lastPictogram = pictograms.find(p => p.id === lastPictogramId);
+
+            if (lastPictogram) {
+                switch (lastPictogram.category) {
+                    case 'Personas':
+                        suggestions = pictograms.filter(p => p.category === 'Acciones');
+                        break;
+                    case 'Acciones':
+                        suggestions = pictograms.filter(p => ['Objetos', 'Comida', 'Lugares'].includes(p.category));
+                        break;
+                    case 'Conceptos':
+                    case 'Sentimientos':
+                        suggestions = pictograms.filter(p => ['Personas', 'Acciones'].includes(p.category));
+                        break;
+                    default:
+                        suggestions = [];
+                }
+            }
+        }
+
+        // Limit the number of suggestions
+        suggestions = suggestions.slice(0, 5);
+
+        suggestions.forEach(pictogram => {
+            const card = createPictogramCard(pictogram);
+            suggestionGrid.appendChild(card);
+        });
     }
 
     function loadSentence() {
@@ -255,6 +298,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('clear-sentence-btn').addEventListener('click', () => {
         sentenceBar.innerHTML = '';
         saveSentence();
+        updateSuggestions();
         showToast('Frase limpiada.', 'info');
     });
 
