@@ -197,7 +197,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const deleteBtn = document.createElement('button');
         deleteBtn.className = 'delete-btn';
         deleteBtn.innerHTML = '&times;';
-        deleteBtn.setAttribute('aria-label', `Eliminar ${pictogram.text}`);
+        deleteBtn.setAttribute('aria-label', `Eliminar ${variation.text}`);
         deleteBtn.addEventListener('click', (e) => {
             e.stopPropagation();
             sentencePictogram.remove();
