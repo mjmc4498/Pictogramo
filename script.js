@@ -212,11 +212,9 @@ document.addEventListener('DOMContentLoaded', () => {
     function saveSentence() {
         const sentenceData = [];
         sentenceBar.querySelectorAll('.sentence-pictogram').forEach(card => {
-            const text = card.querySelector('p').textContent;
-            const icon = card.querySelector('iconify-icon')?.getAttribute('icon');
-            const image = card.querySelector('img')?.src;
             const id = card.dataset.id;
-            sentenceData.push({ id, text, icon, image });
+            const text = card.querySelector('p').textContent;
+            sentenceData.push({ id, text });
         });
         localStorage.setItem('sentence', JSON.stringify(sentenceData));
     }
@@ -229,6 +227,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 const variation = pictogram.variations.find(v => v.text === item.text);
                 if (variation) {
                     addToSentence(variation, pictogram.id);
+                }
+            } else if (item.id.startsWith('custom-')) {
+                // Handle custom pictograms that might not be in the default list
+                const customPictogram = JSON.parse(localStorage.getItem('customPictograms'))?.find(p => p.id === item.id);
+                if (customPictogram) {
+                    addToSentence(customPictogram.variations[0], customPictogram.id);
                 }
             }
         });
