@@ -18,7 +18,23 @@ const categoryData = {
     'Negación y afirmación': { icon: 'mdi:check-decagram-outline' },
     'Colores, formas y números': { icon: 'mdi:palette-outline' },
     'Celebraciones y cultura': { icon: 'mdi:party-popper' },
-    'Señales y símbolos': { icon: 'mdi:alert-circle-outline' }
+    'Señales y símbolos': { icon: 'mdi:alert-circle-outline' },
+    'Sentimientos y estados internos': { icon: 'mdi:emoticon-outline' },
+    'Valores y comportamiento': { icon: 'mdi:hand-heart-outline' },
+    'Actividades recreativas y de ocio': { icon: 'mdi:gamepad-variant-outline' },
+    'Profesiones y roles': { icon: 'mdi:briefcase-outline' },
+    'Instrumentos musicales': { icon: 'mdi:guitar-acoustic' },
+    'Materiales escolares y de oficina': { icon: 'mdi:pencil-box-outline' },
+    'Juegos y juguetes': { icon: 'mdi:toy-brick-outline' },
+    'Hábitos y autocuidado': { icon: 'mdi:hand-wash-outline' },
+    'Partes del día': { icon: 'mdi:weather-sunset' },
+    'Conceptos de tiempo y secuencia': { icon: 'mdi:timer-sand' },
+    'Tecnología y redes sociales': { icon: 'mdi:youtube' },
+    'Normas sociales y expresiones de cortesía': { icon: 'mdi:human-greeting-variant' },
+    'Conceptos abstractos': { icon: 'mdi:lightbulb-on-outline' },
+    'Clima extremo y naturaleza': { icon: 'mdi:weather-hurricane' },
+    'Seguridad y emergencia': { icon: 'mdi:ambulance' },
+    'Síntomas y estados físicos': { icon: 'mdi:thermometer' }
 };
 
 const pictogramData = [
@@ -248,4 +264,161 @@ const pictogramData = [
     { id: 'salida', category: 'Señales y símbolos', variations: [{ text: 'Salida', icon: 'mdi:exit-run' }], nouns: [], synonyms: [], antonyms: [] },
     { id: 'entrada', category: 'Señales y símbolos', variations: [{ text: 'Entrada', icon: 'mdi:door-open' }], nouns: [], synonyms: [], antonyms: [] },
     { id: 'ayuda', category: 'Señales y símbolos', variations: [{ text: 'Ayuda', icon: 'mdi:help-circle' }], nouns: [], synonyms: [], antonyms: [] },
+
+    // Sentimientos y estados internos
+    { id: 'aburrido', category: 'Sentimientos y estados internos', variations: [{ text: 'Aburrido', icon: 'mdi:emoticon-neutral' }], nouns: [], synonyms: [], antonyms: [] },
+    { id: 'emocionado', category: 'Sentimientos y estados internos', variations: [{ text: 'Emocionado', icon: 'mdi:emoticon-excited' }], nouns: [], synonyms: [], antonyms: [] },
+    { id: 'nervioso', category: 'Sentimientos y estados internos', variations: [{ text: 'Nervioso', icon: 'mdi:emoticon-confused' }], nouns: [], synonyms: [], antonyms: [] },
+    { id: 'confundido', category: 'Sentimientos y estados internos', variations: [{ text: 'Confundido', icon: 'mdi:help-circle' }], nouns: [], synonyms: [], antonyms: [] },
+    { id: 'motivado', category: 'Sentimientos y estados internos', variations: [{ text: 'Motivado', icon: 'mdi:emoticon-happy' }], nouns: [], synonyms: [], antonyms: [] },
+    { id: 'cansado', category: 'Sentimientos y estados internos', variations: [{ text: 'Cansado', icon: 'mdi:emoticon-dead' }], nouns: [], synonyms: [], antonyms: [] },
+    { id: 'asustado', category: 'Sentimientos y estados internos', variations: [{ text: 'Asustado', icon: 'mdi:emoticon-cry' }], nouns: [], synonyms: [], antonyms: [] },
+    { id: 'satisfecho', category: 'Sentimientos y estados internos', variations: [{ text: 'Satisfecho', icon: 'mdi:emoticon-cool' }], nouns: [], synonyms: [], antonyms: [] },
+    { id: 'enfadado', category: 'Sentimientos y estados internos', variations: [{ text: 'Enfadado', icon: 'mdi:emoticon-angry' }], nouns: [], synonyms: [], antonyms: [] },
+    { id: 'celoso', category: 'Sentimientos y estados internos', variations: [{ text: 'Celoso', icon: 'mdi:emoticon-devil' }], nouns: [], synonyms: [], antonyms: [] },
+
+    // Valores y comportamiento
+    { id: 'respeto', category: 'Valores y comportamiento', variations: [{ text: 'Respeto', icon: 'mdi:hand-heart' }], nouns: [], synonyms: [], antonyms: [] },
+    { id: 'paciencia', category: 'Valores y comportamiento', variations: [{ text: 'Paciencia', icon: 'mdi:timer-sand' }], nouns: [], synonyms: [], antonyms: [] },
+    { id: 'amabilidad', category: 'Valores y comportamiento', variations: [{ text: 'Amabilidad', icon: 'mdi:human-greeting' }], nouns: [], synonyms: [], antonyms: [] },
+    { id: 'compartir', category: 'Valores y comportamiento', variations: [{ text: 'Compartir', icon: 'mdi:share-variant' }], nouns: [], synonyms: [], antonyms: [] },
+    { id: 'esfuerzo', category: 'Valores y comportamiento', variations: [{ text: 'Esfuerzo', icon: 'mdi:weight-lifter' }], nouns: [], synonyms: [], antonyms: [] },
+    { id: 'honestidad', category: 'Valores y comportamiento', variations: [{ text: 'Honestidad', icon: 'mdi:shield-check' }], nouns: [], synonyms: [], antonyms: [] },
+    { id: 'obedecer', category: 'Valores y comportamiento', variations: [{ text: 'Obedecer', icon: 'mdi:check-all' }], nouns: [], synonyms: [], antonyms: [] },
+    { id: 'pedir_permiso', category: 'Valores y comportamiento', variations: [{ text: 'Pedir permiso', icon: 'mdi:hand-right' }], nouns: [], synonyms: [], antonyms: [] },
+    { id: 'ayudar_valor', category: 'Valores y comportamiento', variations: [{ text: 'Ayudar', icon: 'mdi:help-circle' }], nouns: [], synonyms: [], antonyms: [] },
+
+    // Actividades recreativas y de ocio
+    { id: 'pintar_ocio', category: 'Actividades recreativas y de ocio', variations: [{ text: 'Pintar', icon: 'mdi:palette' }], nouns: [], synonyms: [], antonyms: [] },
+    { id: 'cantar_ocio', category: 'Actividades recreativas y de ocio', variations: [{ text: 'Cantar', icon: 'mdi:microphone-variant' }], nouns: [], synonyms: [], antonyms: [] },
+    { id: 'bailar_ocio', category: 'Actividades recreativas y de ocio', variations: [{ text: 'Bailar', icon: 'mdi:dance-ballroom' }], nouns: [], synonyms: [], antonyms: [] },
+    { id: 'mirar_tv', category: 'Actividades recreativas y de ocio', variations: [{ text: 'Mirar TV', icon: 'mdi:television' }], nouns: [], synonyms: [], antonyms: [] },
+    { id: 'leer_cuentos', category: 'Actividades recreativas y de ocio', variations: [{ text: 'Leer cuentos', icon: 'mdi:book-open-page-variant' }], nouns: [], synonyms: [], antonyms: [] },
+    { id: 'armar_rompecabezas', category: 'Actividades recreativas y de ocio', variations: [{ text: 'Armar rompecabezas', icon: 'mdi:puzzle' }], nouns: [], synonyms: [], antonyms: [] },
+    { id: 'jugar_plastilina', category: 'Actividades recreativas y de ocio', variations: [{ text: 'Jugar con plastilina', icon: 'mdi:creation' }], nouns: [], synonyms: [], antonyms: [] },
+    { id: 'salir_parque', category: 'Actividades recreativas y de ocio', variations: [{ text: 'Salir al parque', icon: 'mdi:pine-tree' }], nouns: [], synonyms: [], antonyms: [] },
+
+    // Profesiones y roles
+    { id: 'maestra_profesion', category: 'Profesiones y roles', variations: [{ text: 'Maestra', icon: 'mdi:teach' }], nouns: [], synonyms: [], antonyms: [] },
+    { id: 'doctor_profesion', category: 'Profesiones y roles', variations: [{ text: 'Doctor', icon: 'mdi:doctor' }], nouns: [], synonyms: [], antonyms: [] },
+    { id: 'bombero', category: 'Profesiones y roles', variations: [{ text: 'Bombero', icon: 'mdi:fire-truck' }], nouns: [], synonyms: [], antonyms: [] },
+    { id: 'chef', category: 'Profesiones y roles', variations: [{ text: 'Chef', icon: 'mdi:chef-hat' }], nouns: [], synonyms: [], antonyms: [] },
+    { id: 'policia_profesion', category: 'Profesiones y roles', variations: [{ text: 'Policía', icon: 'mdi:police-badge' }], nouns: [], synonyms: [], antonyms: [] },
+    { id: 'conductor', category: 'Profesiones y roles', variations: [{ text: 'Conductor', icon: 'mdi:steering' }], nouns: [], synonyms: [], antonyms: [] },
+    { id: 'agricultor', category: 'Profesiones y roles', variations: [{ text: 'Agricultor', icon: 'mdi:tractor' }], nouns: [], synonyms: [], antonyms: [] },
+    { id: 'artista', category: 'Profesiones y roles', variations: [{ text: 'Artista', icon: 'mdi:palette' }], nouns: [], synonyms: [], antonyms: [] },
+    { id: 'programador', category: 'Profesiones y roles', variations: [{ text: 'Programador', icon: 'mdi:laptop-code' }], nouns: [], synonyms: [], antonyms: [] },
+
+    // Instrumentos musicales
+    { id: 'guitarra', category: 'Instrumentos musicales', variations: [{ text: 'Guitarra', icon: 'mdi:guitar-acoustic' }], nouns: [], synonyms: [], antonyms: [] },
+    { id: 'piano', category: 'Instrumentos musicales', variations: [{ text: 'Piano', icon: 'mdi:piano' }], nouns: [], synonyms: [], antonyms: [] },
+    { id: 'tambor', category: 'Instrumentos musicales', variations: [{ text: 'Tambor', icon: 'mdi:drum' }], nouns: [], synonyms: [], antonyms: [] },
+    { id: 'flauta', category: 'Instrumentos musicales', variations: [{ text: 'Flauta', icon: 'mdi:flute' }], nouns: [], synonyms: [], antonyms: [] },
+    { id: 'violin', category: 'Instrumentos musicales', variations: [{ text: 'Violín', icon: 'mdi:violin' }], nouns: [], synonyms: [], antonyms: [] },
+    { id: 'maracas', category: 'Instrumentos musicales', variations: [{ text: 'Maracas', icon: 'mdi:music-clef-treble' }], nouns: [], synonyms: [], antonyms: [] },
+    { id: 'trompeta', category: 'Instrumentos musicales', variations: [{ text: 'Trompeta', icon: 'mdi:trumpet' }], nouns: [], synonyms: [], antonyms: [] },
+    { id: 'microfono', category: 'Instrumentos musicales', variations: [{ text: 'Micrófono', icon: 'mdi:microphone' }], nouns: [], synonyms: [], antonyms: [] },
+
+    // Materiales escolares y de oficina
+    { id: 'lapiz_material', category: 'Materiales escolares y de oficina', variations: [{ text: 'Lápiz', icon: 'mdi:pencil' }], nouns: [], synonyms: [], antonyms: [] },
+    { id: 'goma', category: 'Materiales escolares y de oficina', variations: [{ text: 'Goma', icon: 'mdi:eraser' }], nouns: [], synonyms: [], antonyms: [] },
+    { id: 'tijeras', category: 'Materiales escolares y de oficina', variations: [{ text: 'Tijeras', icon: 'mdi:content-cut' }], nouns: [], synonyms: [], antonyms: [] },
+    { id: 'regla', category: 'Materiales escolares y de oficina', variations: [{ text: 'Regla', icon: 'mdi:ruler' }], nouns: [], synonyms: [], antonyms: [] },
+    { id: 'mochila_material', category: 'Materiales escolares y de oficina', variations: [{ text: 'Mochila', icon: 'mdi:bag-personal' }], nouns: [], synonyms: [], antonyms: [] },
+    { id: 'carpeta', category: 'Materiales escolares y de oficina', variations: [{ text: 'Carpeta', icon: 'mdi:folder' }], nouns: [], synonyms: [], antonyms: [] },
+    { id: 'calculadora', category: 'Materiales escolares y de oficina', variations: [{ text: 'Calculadora', icon: 'mdi:calculator' }], nouns: [], synonyms: [], antonyms: [] },
+    { id: 'escritorio', category: 'Materiales escolares y de oficina', variations: [{ text: 'Escritorio', icon: 'mdi:desk' }], nouns: [], synonyms: [], antonyms: [] },
+
+    // Juegos y juguetes
+    { id: 'pelota_juguete', category: 'Juegos y juguetes', variations: [{ text: 'Pelota', icon: 'mdi:soccer' }], nouns: [], synonyms: [], antonyms: [] },
+    { id: 'muneca', category: 'Juegos y juguetes', variations: [{ text: 'Muñeca', icon: 'mdi:human-female' }], nouns: [], synonyms: [], antonyms: [] },
+    { id: 'bloques', category: 'Juegos y juguetes', variations: [{ text: 'Bloques', icon: 'mdi:toy-brick' }], nouns: [], synonyms: [], antonyms: [] },
+    { id: 'autito', category: 'Juegos y juguetes', variations: [{ text: 'Autito', icon: 'mdi:car-toy' }], nouns: [], synonyms: [], antonyms: [] },
+    { id: 'rompecabezas', category: 'Juegos y juguetes', variations: [{ text: 'Rompecabezas', icon: 'mdi:puzzle' }], nouns: [], synonyms: [], antonyms: [] },
+    { id: 'peluche', category: 'Juegos y juguetes', variations: [{ text: 'Peluche', icon: 'mdi:teddy-bear' }], nouns: [], synonyms: [], antonyms: [] },
+    { id: 'videojuegos_juguete', category: 'Juegos y juguetes', variations: [{ text: 'Videojuegos', icon: 'mdi:gamepad-variant' }], nouns: [], synonyms: [], antonyms: [] },
+
+    // Hábitos y autocuidado
+    { id: 'cepillarse_dientes', category: 'Hábitos y autocuidado', variations: [{ text: 'Cepillarse los dientes', icon: 'mdi:toothbrush' }], nouns: [], synonyms: [], antonyms: [] },
+    { id: 'banarse_habito', category: 'Hábitos y autocuidado', variations: [{ text: 'Bañarse', icon: 'mdi:shower' }], nouns: [], synonyms: [], antonyms: [] },
+    { id: 'vestirse_habito', category: 'Hábitos y autocuidado', variations: [{ text: 'Vestirse', icon: 'mdi:tshirt-crew' }], nouns: [], synonyms: [], antonyms: [] },
+    { id: 'lavarse_manos_habito', category: 'Hábitos y autocuidado', variations: [{ text: 'Lavarse las manos', icon: 'mdi:hand-water' }], nouns: [], synonyms: [], antonyms: [] },
+    { id: 'peinarse', category: 'Hábitos y autocuidado', variations: [{ text: 'Peinarse', icon: 'mdi:hair-dryer' }], nouns: [], synonyms: [], antonyms: [] },
+    { id: 'cortarse_unas', category: 'Hábitos y autocuidado', variations: [{ text: 'Cortarse las uñas', icon: 'mdi:content-cut' }], nouns: [], synonyms: [], antonyms: [] },
+
+    // Partes del día
+    { id: 'manana_dia', category: 'Partes del día', variations: [{ text: 'Mañana', icon: 'mdi:weather-sunset-up' }], nouns: [], synonyms: [], antonyms: [] },
+    { id: 'tarde_dia', category: 'Partes del día', variations: [{ text: 'Tarde', icon: 'mdi:weather-sunset' }], nouns: [], synonyms: [], antonyms: [] },
+    { id: 'noche_dia', category: 'Partes del día', variations: [{ text: 'Noche', icon: 'mdi:weather-night' }], nouns: [], synonyms: [], antonyms: [] },
+    { id: 'mediodia', category: 'Partes del día', variations: [{ text: 'Mediodía', icon: 'mdi:weather-sunny' }], nouns: [], synonyms: [], antonyms: [] },
+    { id: 'desayuno', category: 'Partes del día', variations: [{ text: 'Desayuno', icon: 'mdi:food-croissant' }], nouns: [], synonyms: [], antonyms: [] },
+    { id: 'almuerzo', category: 'Partes del día', variations: [{ text: 'Almuerzo', icon: 'mdi:food' }], nouns: [], synonyms: [], antonyms: [] },
+    { id: 'cena', category: 'Partes del día', variations: [{ text: 'Cena', icon: 'mdi:food-drumstick' }], nouns: [], synonyms: [], antonyms: [] },
+
+    // Conceptos de tiempo y secuencia
+    { id: 'antes', category: 'Conceptos de tiempo y secuencia', variations: [{ text: 'Antes', icon: 'mdi:arrow-left-bold-circle' }], nouns: [], synonyms: [], antonyms: [] },
+    { id: 'despues', category: 'Conceptos de tiempo y secuencia', variations: [{ text: 'Después', icon: 'mdi:arrow-right-bold-circle' }], nouns: [], synonyms: [], antonyms: [] },
+    { id: 'ahora', category: 'Conceptos de tiempo y secuencia', variations: [{ text: 'Ahora', icon: 'mdi:clock-time-eight' }], nouns: [], synonyms: [], antonyms: [] },
+    { id: 'mas_tarde', category: 'Conceptos de tiempo y secuencia', variations: [{ text: 'Más tarde', icon: 'mdi:clock-end' }], nouns: [], synonyms: [], antonyms: [] },
+    { id: 'primero', category: 'Conceptos de tiempo y secuencia', variations: [{ text: 'Primero', icon: 'mdi:numeric-1' }], nouns: [], synonyms: [], antonyms: [] },
+    { id: 'ultimo', category: 'Conceptos de tiempo y secuencia', variations: [{ text: 'Último', icon: 'mdi:numeric-9-plus' }], nouns: [], synonyms: [], antonyms: [] },
+
+    // Tecnología y redes sociales
+    { id: 'celular_social', category: 'Tecnología y redes sociales', variations: [{ text: 'Celular', icon: 'mdi:cellphone' }], nouns: [], synonyms: [], antonyms: [] },
+    { id: 'computadora_social', category: 'Tecnología y redes sociales', variations: [{ text: 'Computadora', icon: 'mdi:laptop' }], nouns: [], synonyms: [], antonyms: [] },
+    { id: 'tablet_social', category: 'Tecnología y redes sociales', variations: [{ text: 'Tablet', icon: 'mdi:tablet' }], nouns: [], synonyms: [], antonyms: [] },
+    { id: 'camara_social', category: 'Tecnología y redes sociales', variations: [{ text: 'Cámara', icon: 'mdi:camera' }], nouns: [], synonyms: [], antonyms: [] },
+    { id: 'internet_social', category: 'Tecnología y redes sociales', variations: [{ text: 'Internet', icon: 'mdi:web' }], nouns: [], synonyms: [], antonyms: [] },
+    { id: 'mensaje', category: 'Tecnología y redes sociales', variations: [{ text: 'Mensaje', icon: 'mdi:message-text' }], nouns: [], synonyms: [], antonyms: [] },
+    { id: 'videollamada', category: 'Tecnología y redes sociales', variations: [{ text: 'Videollamada', icon: 'mdi:video' }], nouns: [], synonyms: [], antonyms: [] },
+    { id: 'youtube', category: 'Tecnología y redes sociales', variations: [{ text: 'YouTube', icon: 'mdi:youtube' }], nouns: [], synonyms: [], antonyms: [] },
+    { id: 'tiktok', category: 'Tecnología y redes sociales', variations: [{ text: 'TikTok', icon: 'mdi:music-note' }], nouns: [], synonyms: [], antonyms: [] },
+
+    // Normas sociales y expresiones de cortesía
+    { id: 'gracias', category: 'Normas sociales y expresiones de cortesía', variations: [{ text: 'Gracias', icon: 'mdi:human-greeting' }], nouns: [], synonyms: [], antonyms: [] },
+    { id: 'por_favor', category: 'Normas sociales y expresiones de cortesía', variations: [{ text: 'Por favor', icon: 'mdi:hand-heart' }], nouns: [], synonyms: [], antonyms: [] },
+    { id: 'permiso', category: 'Normas sociales y expresiones de cortesía', variations: [{ text: 'Permiso', icon: 'mdi:hand-right' }], nouns: [], synonyms: [], antonyms: [] },
+    { id: 'lo_siento', category: 'Normas sociales y expresiones de cortesía', variations: [{ text: 'Lo siento', icon: 'mdi:emoticon-sad' }], nouns: [], synonyms: [], antonyms: [] },
+    { id: 'saludar', category: 'Normas sociales y expresiones de cortesía', variations: [{ text: 'Saludar', icon: 'mdi:hand-wave' }], nouns: [], synonyms: [], antonyms: [] },
+    { id: 'despedirse', category: 'Normas sociales y expresiones de cortesía', variations: [{ text: 'Despedirse', icon: 'mdi:hand-wave-outline' }], nouns: [], synonyms: [], antonyms: [] },
+    { id: 'pedir_ayuda', category: 'Normas sociales y expresiones de cortesía', variations: [{ text: 'Pedir ayuda', icon: 'mdi:help-circle' }], nouns: [], synonyms: [], antonyms: [] },
+
+    // Conceptos abstractos
+    { id: 'todo_abstracto', category: 'Conceptos abstractos', variations: [{ text: 'Todo', icon: 'mdi:earth' }], nouns: [], synonyms: [], antonyms: [] },
+    { id: 'nada_abstracto', category: 'Conceptos abstractos', variations: [{ text: 'Nada', icon: 'mdi:emoticon-sad' }], nouns: [], synonyms: [], antonyms: [] },
+    { id: 'igual', category: 'Conceptos abstractos', variations: [{ text: 'Igual', icon: 'mdi:equal' }], nouns: [], synonyms: [], antonyms: [] },
+    { id: 'diferente', category: 'Conceptos abstractos', variations: [{ text: 'Diferente', icon: 'mdi:not-equal-variant' }], nouns: [], synonyms: [], antonyms: [] },
+    { id: 'mas', category: 'Conceptos abstractos', variations: [{ text: 'Más', icon: 'mdi:plus' }], nouns: [], synonyms: [], antonyms: [] },
+    { id: 'menos', category: 'Conceptos abstractos', variations: [{ text: 'Menos', icon: 'mdi:minus' }], nouns: [], synonyms: [], antonyms: [] },
+    { id: 'causa', category: 'Conceptos abstractos', variations: [{ text: 'Causa', icon: 'mdi:arrow-right-thin-circle-outline' }], nouns: [], synonyms: [], antonyms: [] },
+    { id: 'efecto', category: 'Conceptos abstractos', variations: [{ text: 'Efecto', icon: 'mdi:arrow-left-thin-circle-outline' }], nouns: [], synonyms: [], antonyms: [] },
+    { id: 'dificil', category: 'Conceptos abstractos', variations: [{ text: 'Difícil', icon: 'mdi:weight-lifter' }], nouns: [], synonyms: [], antonyms: [] },
+    { id: 'facil', category: 'Conceptos abstractos', variations: [{ text: 'Fácil', icon: 'mdi:thumb-up' }], nouns: [], synonyms: [], antonyms: [] },
+
+    // Clima extremo y naturaleza
+    { id: 'tormenta', category: 'Clima extremo y naturaleza', variations: [{ text: 'Tormenta', icon: 'mdi:weather-lightning-rainy' }], nouns: [], synonyms: [], antonyms: [] },
+    { id: 'relampago', category: 'Clima extremo y naturaleza', variations: [{ text: 'Relámpago', icon: 'mdi:weather-lightning' }], nouns: [], synonyms: [], antonyms: [] },
+    { id: 'nieve_extremo', category: 'Clima extremo y naturaleza', variations: [{ text: 'Nieve', icon: 'mdi:weather-snowy' }], nouns: [], synonyms: [], antonyms: [] },
+    { id: 'arcoiris', category: 'Clima extremo y naturaleza', variations: [{ text: 'Arcoíris', icon: 'mdi:weather-rainbow' }], nouns: [], synonyms: [], antonyms: [] },
+    { id: 'eclipse', category: 'Clima extremo y naturaleza', variations: [{ text: 'Eclipse', icon: 'mdi:eclipse' }], nouns: [], synonyms: [], antonyms: [] },
+    { id: 'huracan', category: 'Clima extremo y naturaleza', variations: [{ text: 'Huracán', icon: 'mdi:weather-hurricane' }], nouns: [], synonyms: [], antonyms: [] },
+    { id: 'tsunami', category: 'Clima extremo y naturaleza', variations: [{ text: 'Tsunami', icon: 'mdi:wave' }], nouns: [], synonyms: [], antonyms: [] },
+
+    // Seguridad y emergencia
+    { id: 'fuego', category: 'Seguridad y emergencia', variations: [{ text: 'Fuego', icon: 'mdi:fire' }], nouns: [], synonyms: [], antonyms: [] },
+    { id: 'peligro_seguridad', category: 'Seguridad y emergencia', variations: [{ text: 'Peligro', icon: 'mdi:alert' }], nouns: [], synonyms: [], antonyms: [] },
+    { id: 'ambulancia', category: 'Seguridad y emergencia', variations: [{ text: 'Ambulancia', icon: 'mdi:ambulance' }], nouns: [], synonyms: [], antonyms: [] },
+    { id: 'extintor', category: 'Seguridad y emergencia', variations: [{ text: 'Extintor', icon: 'mdi:fire-extinguisher' }], nouns: [], synonyms: [], antonyms: [] },
+    { id: 'llamada_911', category: 'Seguridad y emergencia', variations: [{ text: 'Llamada al 911', icon: 'mdi:phone-alert' }], nouns: [], synonyms: [], antonyms: [] },
+    { id: 'evacuacion', category: 'Seguridad y emergencia', variations: [{ text: 'Evacuación', icon: 'mdi:exit-run' }], nouns: [], synonyms: [], antonyms: [] },
+    { id: 'curita', category: 'Seguridad y emergencia', variations: [{ text: 'Curita', icon: 'mdi:bandage' }], nouns: [], synonyms: [], antonyms: [] },
+
+    // Síntomas y estados físicos
+    { id: 'dolor_cabeza', category: 'Síntomas y estados físicos', variations: [{ text: 'Dolor de cabeza', icon: 'mdi:head-alert' }], nouns: [], synonyms: [], antonyms: [] },
+    { id: 'fiebre', category: 'Síntomas y estados físicos', variations: [{ text: 'Fiebre', icon: 'mdi:thermometer' }], nouns: [], synonyms: [], antonyms: [] },
+    { id: 'tos', category: 'Síntomas y estados físicos', variations: [{ text: 'Tos', icon: 'mdi:emoticon-sick' }], nouns: [], synonyms: [], antonyms: [] },
+    { id: 'hambre', category: 'Síntomas y estados físicos', variations: [{ text: 'Hambre', icon: 'mdi:food' }], nouns: [], synonyms: [], antonyms: [] },
+    { id: 'sueno', category: 'Síntomas y estados físicos', variations: [{ text: 'Sueño', icon: 'mdi:sleep' }], nouns: [], synonyms: [], antonyms: [] },
+    { id: 'frio_sintoma', category: 'Síntomas y estados físicos', variations: [{ text: 'Frío', icon: 'mdi:snowflake' }], nouns: [], synonyms: [], antonyms: [] },
+    { id: 'mareo', category: 'Síntomas y estados físicos', variations: [{ text: 'Mareo', icon: 'mdi:emoticon-dead' }], nouns: [], synonyms: [], antonyms: [] },
 ];
