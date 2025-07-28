@@ -64,13 +64,15 @@ document.addEventListener('DOMContentLoaded', () => {
         card.className = 'pictogram-card';
         card.dataset.id = pictogram.id;
         card.setAttribute('tabindex', '0');
-        card.setAttribute('role', 'button');
-        card.setAttribute('aria-label', pictogram.text);
 
-        if (pictogram.icon) {
-            card.innerHTML = `<iconify-icon icon="${pictogram.icon}" style="font-size: 3.5rem;"></iconify-icon><p>${pictogram.text}</p>`;
+        const baseVariation = pictogram.variations[0];
+        card.setAttribute('role', 'button');
+        card.setAttribute('aria-label', baseVariation.text);
+
+        if (baseVariation.icon) {
+            card.innerHTML = `<iconify-icon icon="${baseVariation.icon}" style="font-size: 3.5rem;"></iconify-icon><p>${baseVariation.text}</p>`;
         } else {
-            card.innerHTML = `<img src="${pictogram.image}" alt="${pictogram.text}"><p>${pictogram.text}</p>`;
+            card.innerHTML = `<img src="${baseVariation.image}" alt="${baseVariation.text}"><p>${baseVariation.text}</p>`;
         }
 
         if (pictogram.id.startsWith('custom-') && !isSentenceCard) {
@@ -140,19 +142,55 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function handlePictogramSelection(pictogram, card) {
-        speak(pictogram.text);
+        if (pictogram.variations.length > 1) {
+            showVariationsPopup(pictogram, card);
+        } else {
+            const selectedVariation = pictogram.variations[0];
+            speak(selectedVariation.text);
+            card.classList.add('selected');
+            setTimeout(() => card.classList.remove('selected'), 500);
+            addToSentence(selectedVariation);
+        }
+    }
 
-        // Visual feedback
-        card.classList.add('selected');
-        setTimeout(() => card.classList.remove('selected'), 500);
+    function showVariationsPopup(pictogram, card) {
+        const popup = document.getElementById('variations-popup');
+        popup.innerHTML = '';
 
-        addToSentence(pictogram);
+        pictogram.variations.forEach(variation => {
+            const item = document.createElement('div');
+            item.className = 'variation-item';
+            item.textContent = variation.text;
+            item.addEventListener('click', (e) => {
+                e.stopPropagation();
+                speak(variation.text);
+                addToSentence(variation);
+                popup.classList.add('d-none');
+            });
+            popup.appendChild(item);
+        });
+
+        const cardRect = card.getBoundingClientRect();
+        popup.style.left = `${cardRect.left}px`;
+        popup.style.top = `${cardRect.bottom}px`;
+        popup.classList.remove('d-none');
+
+        // Hide popup when clicking outside
+        setTimeout(() => {
+            document.addEventListener('click', () => popup.classList.add('d-none'), { once: true });
+        }, 0);
     }
 
 
-    function addToSentence(pictogram) {
-        const sentencePictogram = createPictogramCard(pictogram, true);
-        sentencePictogram.classList.add('sentence-pictogram');
+    function addToSentence(variation) {
+        const sentencePictogram = document.createElement('div');
+        sentencePictogram.className = 'pictogram-card sentence-pictogram';
+
+        if (variation.icon) {
+            sentencePictogram.innerHTML = `<iconify-icon icon="${variation.icon}" style="font-size: 3.5rem;"></iconify-icon><p>${variation.text}</p>`;
+        } else {
+            sentencePictogram.innerHTML = `<img src="${variation.image}" alt="${variation.text}"><p>${variation.text}</p>`;
+        }
 
         const deleteBtn = document.createElement('button');
         deleteBtn.className = 'delete-btn';

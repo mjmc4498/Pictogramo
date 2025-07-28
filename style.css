@@ -268,3 +268,26 @@ h1, h2 {
         margin: 1rem;
     }
 }
+
+#variations-popup {
+    position: absolute;
+    z-index: 1000;
+    min-width: 150px;
+    background-color: var(--white);
+    border-radius: 8px;
+    padding: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.variation-item {
+    cursor: pointer;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    transition: background-color 0.2s;
+}
+
+.variation-item:hover {
+    background-color: var(--background-color);
+}
