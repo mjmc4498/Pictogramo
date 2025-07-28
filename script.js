@@ -223,34 +223,68 @@ document.addEventListener('DOMContentLoaded', () => {
         localStorage.setItem('sentence', JSON.stringify(sentenceData));
     }
 
+    const suggestionRules = [
+        {
+            condition: (sentence) => sentence.length === 0,
+            suggestions: () => pictograms.filter(p => p.category === 'Personas' || p.category === 'Negación y afirmación')
+        },
+        {
+            condition: (sentence) => {
+                const last = sentence[sentence.length - 1];
+                return last && (last.category === 'Personas' || last.category === 'Familia y relaciones');
+            },
+            suggestions: () => pictograms.filter(p => p.category === 'Acciones' || p.category === 'Verbos básicos')
+        },
+        {
+            condition: (sentence) => {
+                const last = sentence[sentence.length - 1];
+                return last && (last.category === 'Acciones' || last.category === 'Verbos básicos');
+            },
+            suggestions: () => pictograms.filter(p => ['Objetos', 'Comida y bebida', 'Lugares', 'Animales', 'Personas', 'Negación y afirmación'].includes(p.category))
+        },
+        {
+            condition: (sentence) => {
+                const last = sentence[sentence.length - 1];
+                return last && (last.category === 'Objetos' || last.category === 'Comida y bebida' || last.category === 'Animales');
+            },
+            suggestions: () => pictograms.filter(p => p.category === 'Acciones' || p.category === 'Verbos básicos' || p.category === 'Negación y afirmación')
+        },
+        {
+            condition: (sentence) => {
+                const last = sentence[sentence.length - 1];
+                return last && last.category === 'Emociones';
+            },
+            suggestions: () => pictograms.filter(p => p.category === 'Personas' || p.category === 'Verbos básicos')
+        },
+        {
+            condition: (sentence) => {
+                const last = sentence[sentence.length - 1];
+                return last && last.category === 'Lugares';
+            },
+            suggestions: () => pictograms.filter(p => p.category === 'Acciones' || p.category === 'Verbos básicos')
+        }
+    ];
+
     function updateSuggestions() {
         const suggestionGrid = document.getElementById('suggestion-grid');
         suggestionGrid.innerHTML = '';
         const sentenceCards = sentenceBar.querySelectorAll('.sentence-pictogram');
+        const sentence = Array.from(sentenceCards).map(card => {
+            const id = card.dataset.id;
+            return pictograms.find(p => p.id === id);
+        }).filter(Boolean);
+
         let suggestions = [];
-
-        if (sentenceCards.length === 0) {
-            suggestions = pictograms.filter(p => p.category === 'Personas');
-        } else {
-            const lastPictogramId = sentenceCards[sentenceCards.length - 1].dataset.id;
-            const lastPictogram = pictograms.find(p => p.id === lastPictogramId);
-
-            if (lastPictogram) {
-                switch (lastPictogram.category) {
-                    case 'Personas':
-                        suggestions = pictograms.filter(p => p.category === 'Acciones');
-                        break;
-                    case 'Acciones':
-                        suggestions = pictograms.filter(p => ['Objetos', 'Comida', 'Lugares'].includes(p.category));
-                        break;
-                    case 'Conceptos':
-                    case 'Sentimientos':
-                        suggestions = pictograms.filter(p => ['Personas', 'Acciones'].includes(p.category));
-                        break;
-                    default:
-                        suggestions = [];
-                }
+        for (const rule of suggestionRules) {
+            if (rule.condition(sentence)) {
+                suggestions = rule.suggestions();
+                break;
             }
+        }
+
+        // As a fallback, suggest some common words if no rule matches
+        if (suggestions.length === 0 && sentence.length > 0) {
+            suggestions = pictograms.filter(p => p.category === 'Pequeñas Palabras');
         }
 
         // Limit the number of suggestions
