@@ -14,11 +14,6 @@ document.addEventListener('DOMContentLoaded', () => {
         renderCategoryFilters();
         loadSentence();
         setupDragAndDrop();
-
-        // Iconpicker event listener
-        $('#pictogram-icon-picker').on('change', function(e) {
-            document.getElementById('pictogram-icon').value = e.icon;
-        });
     }
 
     function speak(text, lang = 'es-ES') {
@@ -67,7 +62,7 @@ document.addEventListener('DOMContentLoaded', () => {
         card.setAttribute('aria-label', pictogram.text);
 
         if (pictogram.icon) {
-            card.innerHTML = `<i class="bi ${pictogram.icon}"></i><p>${pictogram.text}</p>`;
+            card.innerHTML = `<iconify-icon icon="${pictogram.icon}" style="font-size: 3.5rem;"></iconify-icon><p>${pictogram.text}</p>`;
         } else {
             card.innerHTML = `<img src="${pictogram.image}" alt="${pictogram.text}"><p>${pictogram.text}</p>`;
         }
@@ -78,7 +73,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const editBtn = document.createElement('button');
             editBtn.className = 'btn btn-sm btn-outline-primary';
-            editBtn.innerHTML = '<i class="bi bi-pencil"></i>';
+            editBtn.innerHTML = '<iconify-icon icon="mdi:pencil"></iconify-icon>';
             editBtn.addEventListener('click', (e) => {
                 e.stopPropagation();
                 openEditModal(pictogram);
@@ -86,7 +81,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const deleteBtn = document.createElement('button');
             deleteBtn.className = 'btn btn-sm btn-outline-danger';
-            deleteBtn.innerHTML = '<i class="bi bi-trash"></i>';
+            deleteBtn.innerHTML = '<iconify-icon icon="mdi:trash-can"></iconify-icon>';
             deleteBtn.addEventListener('click', (e) => {
                 e.stopPropagation();
                 openDeleteConfirmation(pictogram);
@@ -214,9 +209,6 @@ document.addEventListener('DOMContentLoaded', () => {
         delete document.getElementById('add-pictogram-form').dataset.editingId;
         document.getElementById('image-preview').style.display = 'none';
 
-        // Initialize icon picker
-        $('#pictogram-icon-picker').iconpicker();
-
         modal.style.display = 'block';
     });
 
@@ -280,7 +272,7 @@ document.addEventListener('DOMContentLoaded', () => {
         e.preventDefault();
         const text = document.getElementById('pictogram-text').value.trim();
         const category = document.getElementById('pictogram-category').value.trim() || 'personalizado';
-        const icon = document.getElementById('pictogram-icon').value;
+        const icon = document.getElementById('pictogram-icon').value.trim();
         const imageFile = document.getElementById('pictogram-image').files[0];
 
         if (!text) {
@@ -342,7 +334,7 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('add-pictogram-form').dataset.editingId = pictogram.id;
         document.getElementById('pictogram-text').value = pictogram.text;
         document.getElementById('pictogram-category').value = pictogram.category;
-        $('#pictogram-icon-picker').iconpicker('setIcon', pictogram.icon || '');
+        document.getElementById('pictogram-icon').value = pictogram.icon || '';
 
         const preview = document.getElementById('image-preview');
         if (pictogram.image) {

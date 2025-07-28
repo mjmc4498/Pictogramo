@@ -1,4 +1,7 @@
 # Sistema de Pictogramas Interactivo para Comunicación Aumentativa
+
+![Captura de pantalla de la aplicación](https://i.imgur.com/sC22TSp.png)
+
 ## Descripción
 
 Este es un sistema de comunicación aumentativa y alternativa (CAA) basado en pictogramas, diseñado para niños y personas con dificultades en la comunicación, como el Trastorno del Espectro Autista (TEA). La aplicación es 100% offline, funciona en cualquier navegador moderno y está construida únicamente con HTML, CSS y JavaScript puro, sin necesidad de servidores ni dependencias complejas.
