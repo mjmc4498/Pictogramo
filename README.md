@@ -1,6 +1,6 @@
 # Sistema de Pictogramas Interactivo para Comunicación Aumentativa
 
-![Captura de pantalla de la aplicación](https://i.imgur.com/sC22TSp.png)
+![Captura de pantalla de la aplicación](https://i.imgur.com/4J4zY5A.png)
 
 ## Descripción
 
