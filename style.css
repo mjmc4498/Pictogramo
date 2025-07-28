@@ -284,3 +284,19 @@ h1, h2 {
     background-color: #E9F2FC;
     color: var(--primary-color);
 }
+
+.suggestion-container {
+    background-color: var(--white);
+    border-radius: 15px;
+    padding: 1.5rem;
+    box-shadow: var(--card-shadow);
+}
+
+.suggestion-container .pictogram-card {
+    padding: 1rem;
+    transform: scale(0.9);
+}
+
+.suggestion-container .pictogram-card:hover {
+    transform: scale(0.95);
+}
