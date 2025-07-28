@@ -1,5 +1,5 @@
 const pictogramData = [
-    // Personas y Pronombres
+    // Core: Personas y Pronombres
     { id: 'yo', text: 'Yo', icon: 'mdi:account', category: 'Personas' },
     { id: 'tu', text: 'Tú', icon: 'mdi:account-outline', category: 'Personas' },
     { id: 'el', text: 'Él', icon: 'mdi:gender-male', category: 'Personas' },
@@ -15,7 +15,7 @@ const pictogramData = [
     { id: 'doctor', text: 'Doctor', icon: 'mdi:doctor', category: 'Personas' },
     { id: 'profesor', text: 'Profesor', icon: 'mdi:teach', category: 'Personas' },
 
-    // Verbos / Acciones
+    // Core: Verbos / Acciones
     { id: 'quiero', text: 'Quiero', icon: 'mdi:hand-pointing-right', category: 'Acciones' },
     { id: 'no_quiero', text: 'No quiero', icon: 'mdi:hand-saw', category: 'Acciones' },
     { id: 'comer', text: 'Comer', icon: 'mdi:food-apple', category: 'Acciones' },
@@ -51,7 +51,23 @@ const pictogramData = [
     { id: 'peinarse', text: 'Peinarse', icon: 'mdi:hair-dryer', category: 'Acciones' },
     { id: 'cepillarse', text: 'Cepillarse', icon: 'mdi:brush', category: 'Acciones' },
 
-    // Comida
+    // Core: Preguntas
+    { id: 'que', text: 'Qué', icon: 'mdi:help-box', category: 'Preguntas' },
+    { id: 'quien', text: 'Quién', icon: 'mdi:account-question', category: 'Preguntas' },
+    { id: 'cuando', text: 'Cuándo', icon: 'mdi:calendar-question', category: 'Preguntas' },
+    { id: 'donde', text: 'Dónde', icon: 'mdi:map-marker-question', category: 'Preguntas' },
+    { id: 'porque', text: 'Porqué', icon: 'mdi:comment-question', category: 'Preguntas' },
+    { id: 'como', text: 'Cómo', icon: 'mdi:information', category: 'Preguntas' },
+
+    // Core: Pequeñas Palabras
+    { id: 'y', text: 'Y', icon: 'mdi:plus', category: 'Pequeñas Palabras' },
+    { id: 'con', text: 'Con', icon: 'mdi:link', category: 'Pequeñas Palabras' },
+    { id: 'el', text: 'El', icon: 'mdi:alpha-e-box', category: 'Pequeñas Palabras' },
+    { id: 'la', text: 'La', icon: 'mdi:alpha-l-box', category: 'Pequeñas Palabras' },
+    { id: 'en', text: 'En', icon: 'mdi:alpha-e-box-outline', category: 'Pequeñas Palabras' },
+    { id: 'pero', text: 'Pero', icon: 'mdi:alpha-p-box', category: 'Pequeñas Palabras' },
+
+    // Fringe: Comida
     { id: 'agua', text: 'Agua', icon: 'mdi:cup', category: 'Comida' },
     { id: 'leche', text: 'Leche', icon: 'mdi:cup-off', category: 'Comida' },
     { id: 'jugo', text: 'Jugo', icon: 'mdi:food-fork-drink', category: 'Comida' },
@@ -76,7 +92,7 @@ const pictogramData = [
     { id: 'almuerzo', text: 'Almuerzo', icon: 'mdi:weather-sunny', category: 'Comida' },
     { id: 'cena', text: 'Cena', icon: 'mdi:weather-night', category: 'Comida' },
 
-    // Ropa
+    // Fringe: Ropa
     { id: 'camiseta', text: 'Camiseta', icon: 'mdi:tshirt-v', category: 'Ropa' },
     { id: 'pantalon', text: 'Pantalón', icon: 'mdi:pants', category: 'Ropa' },
     { id: 'vestido', text: 'Vestido', icon: 'mdi:human-female-dress', category: 'Ropa' },
@@ -87,7 +103,7 @@ const pictogramData = [
     { id: 'sombrero', text: 'Sombrero', icon: 'mdi:hat-fedora', category: 'Ropa' },
     { id: 'gafas', text: 'Gafas', icon: 'mdi:glasses', category: 'Ropa' },
 
-    // Animales
+    // Fringe: Animales
     { id: 'perro', text: 'Perro', icon: 'mdi:dog', category: 'Animales' },
     { id: 'gato', text: 'Gato', icon: 'mdi:cat', category: 'Animales' },
     { id: 'pajaro', text: 'Pájaro', icon: 'mdi:bird', category: 'Animales' },
@@ -104,7 +120,7 @@ const pictogramData = [
     { id: 'serpiente', text: 'Serpiente', icon: 'mdi:snake', category: 'Animales' },
     { id: 'mariposa', text: 'Mariposa', icon: 'mdi:butterfly', category: 'Animales' },
 
-    // Juguetes y Objetos
+    // Fringe: Juguetes y Objetos
     { id: 'pelota', text: 'Pelota', icon: 'mdi:soccer', category: 'Juguetes' },
     { id: 'muneca', text: 'Muñeca', icon: 'mdi:human-female', category: 'Juguetes' },
     { id: 'carro', text: 'Carro', icon: 'mdi:car', category: 'Juguetes' },
@@ -128,7 +144,7 @@ const pictogramData = [
     { id: 'computadora', text: 'Computadora', icon: 'mdi:laptop', category: 'Objetos' },
     { id: 'reloj', text: 'Reloj', icon: 'mdi:clock', category: 'Objetos' },
 
-    // Lugares
+    // Fringe: Lugares
     { id: 'casa', text: 'Casa', icon: 'mdi:home', category: 'Lugares' },
     { id: 'escuela', text: 'Escuela', icon: 'mdi:school', category: 'Lugares' },
     { id: 'parque', text: 'Parque', icon: 'mdi:pine-tree', category: 'Lugares' },
@@ -144,47 +160,33 @@ const pictogramData = [
     { id: 'sala', text: 'Sala', icon: 'mdi:sofa', category: 'Lugares' },
     { id: 'jardin', text: 'Jardín', icon: 'mdi:flower', category: 'Lugares' },
 
-    // Emociones y Adjetivos
-    { id: 'feliz', text: 'Feliz', icon: 'mdi:emoticon-happy', category: 'Emociones' },
-    { id: 'triste', text: 'Triste', icon: 'mdi:emoticon-sad', category: 'Emociones' },
-    { id: 'enojado', text: 'Enojado', icon: 'mdi:emoticon-angry', category: 'Emociones' },
-    { id: 'asustado', text: 'Asustado', icon: 'mdi:emoticon-dead', category: 'Emociones' },
-    { id: 'sorprendido', text: 'Sorprendido', icon: 'mdi:emoticon-excited', category: 'Emociones' },
-    { id: 'cansado', text: 'Cansado', icon: 'mdi:battery-30', category: 'Emociones' },
-    { id: 'enfermo', text: 'Enfermo', icon: 'mdi:emoticon-sick', category: 'Emociones' },
-    { id: 'bien', text: 'Bien', icon: 'mdi:thumb-up', category: 'Emociones' },
-    { id: 'mal', text: 'Mal', icon: 'mdi:thumb-down', category: 'Emociones' },
-    { id: 'grande', text: 'Grande', icon: 'mdi:arrow-expand-all', category: 'Adjetivos' },
-    { id: 'pequeno', text: 'Pequeño', icon: 'mdi:arrow-collapse-all', category: 'Adjetivos' },
-    { id: 'caliente', text: 'Caliente', icon: 'mdi:fire', category: 'Adjetivos' },
-    { id: 'frio', text: 'Frío', icon: 'mdi:snowflake', category: 'Adjetivos' },
-    { id: 'rapido', text: 'Rápido', icon: 'mdi:run-fast', category: 'Adjetivos' },
-    { id: 'lento', text: 'Lento', icon: 'mdi:tortoise', category: 'Adjetivos' },
-    { id: 'bonito', text: 'Bonito', icon: 'mdi:heart', category: 'Adjetivos' },
-    { id: 'feo', text: 'Feo', icon: 'mdi:heart-broken', category: 'Adjetivos' },
-    { id: 'limpio', text: 'Limpio', icon: 'mdi:clean', category: 'Adjetivos' },
-    { id: 'sucio', text: 'Sucio', icon: 'mdi:dirty', category: 'Adjetivos' },
-    { id: 'fuerte', text: 'Fuerte', icon: 'mdi:arm-flex', category: 'Adjetivos' },
-    { id: 'debil', text: 'Débil', icon: 'mdi:arm-flex-outline', category: 'Adjetivos' },
+    // Fringe: Emociones y Adjetivos
+    { id: 'feliz', text: 'Feliz', icon: 'mdi:emoticon-happy', category: 'Sentimientos' },
+    { id: 'triste', text: 'Triste', icon: 'mdi:emoticon-sad', category: 'Sentimientos' },
+    { id: 'enojado', text: 'Enojado', icon: 'mdi:emoticon-angry', category: 'Sentimientos' },
+    { id: 'asustado', text: 'Asustado', icon: 'mdi:emoticon-dead', category: 'Sentimientos' },
+    { id: 'sorprendido', text: 'Sorprendido', icon: 'mdi:emoticon-excited', category: 'Sentimientos' },
+    { id: 'cansado', text: 'Cansado', icon: 'mdi:battery-30', category: 'Sentimientos' },
+    { id: 'enfermo', text: 'Enfermo', icon: 'mdi:emoticon-sick', category: 'Sentimientos' },
+    { id: 'bien', text: 'Bien', icon: 'mdi:thumb-up', category: 'Sentimientos' },
+    { id: 'mal', text: 'Mal', icon: 'mdi:thumb-down', category: 'Sentimientos' },
+    { id: 'frustrado', text: 'Frustrado', icon: 'mdi:emoticon-confused', category: 'Sentimientos' },
+    { id: 'emocionado', text: 'Emocionado', icon: 'mdi:emoticon-cool', category: 'Sentimientos' },
+    { id: 'timido', text: 'Tímido', icon: 'mdi:emoticon-neutral', category: 'Sentimientos' },
+    { id: 'grande', text: 'Grande', icon: 'mdi:arrow-expand-all', category: 'Conceptos' },
+    { id: 'pequeno', text: 'Pequeño', icon: 'mdi:arrow-collapse-all', category: 'Conceptos' },
+    { id: 'caliente', text: 'Caliente', icon: 'mdi:fire', category: 'Conceptos' },
+    { id: 'frio', text: 'Frío', icon: 'mdi:snowflake', category: 'Conceptos' },
+    { id: 'rapido', text: 'Rápido', icon: 'mdi:run-fast', category: 'Conceptos' },
+    { id: 'lento', text: 'Lento', icon: 'mdi:tortoise', category: 'Conceptos' },
+    { id: 'bonito', text: 'Bonito', icon: 'mdi:heart', category: 'Conceptos' },
+    { id: 'feo', text: 'Feo', icon: 'mdi:heart-broken', category: 'Conceptos' },
+    { id: 'limpio', text: 'Limpio', icon: 'mdi:clean', category: 'Conceptos' },
+    { id: 'sucio', text: 'Sucio', icon: 'mdi:dirty', category: 'Conceptos' },
+    { id: 'fuerte', text: 'Fuerte', icon: 'mdi:arm-flex', category: 'Conceptos' },
+    { id: 'debil', text: 'Débil', icon: 'mdi:arm-flex-outline', category: 'Conceptos' },
 
-    // Palabras de Enlace y Sociales
-    { id: 'y', text: 'Y', icon: 'mdi:plus', category: 'Social' },
-    { id: 'con', text: 'Con', icon: 'mdi:link', category: 'Social' },
-    { id: 'por_favor', text: 'Por favor', icon: 'mdi:human-greeting', category: 'Social' },
-    { id: 'gracias', text: 'Gracias', icon: 'mdi:hand-heart', category: 'Social' },
-    { id: 'de_nada', text: 'De nada', icon: 'mdi:hand-wave', category: 'Social' },
-    { id: 'hola', text: 'Hola', icon: 'mdi:hand-peace', category: 'Social' },
-    { id: 'adios', text: 'Adiós', icon: 'mdi:hand-wave', category: 'Social' },
-    { id: 'si', text: 'Sí', icon: 'mdi:check-circle', category: 'Social' },
-    { id: 'no', text: 'No', icon: 'mdi:close-circle', category: 'Social' },
-    { id: 'que', text: 'Qué', icon: 'mdi:help-box', category: 'Social' },
-    { id: 'quien', text: 'Quién', icon: 'mdi:account-question', category: 'Social' },
-    { id: 'cuando', text: 'Cuándo', icon: 'mdi:calendar-question', category: 'Social' },
-    { id: 'donde', text: 'Dónde', icon: 'mdi:map-marker-question', category: 'Social' },
-    { id: 'porque', text: 'Porqué', icon: 'mdi:comment-question', category: 'Social' },
-    { id: 'como', text: 'Cómo', icon: 'mdi:information', category: 'Social' },
-
-    // Tiempo y Clima
+    // Fringe: Tiempo y Clima
     { id: 'hoy', text: 'Hoy', icon: 'mdi:calendar-today', category: 'Tiempo' },
     { id: 'ayer', text: 'Ayer', icon: 'mdi:calendar-arrow-left', category: 'Tiempo' },
     { id: 'manana', text: 'Mañana', icon: 'mdi:calendar-arrow-right', category: 'Tiempo' },
@@ -199,7 +201,7 @@ const pictogramData = [
     { id: 'viento', text: 'Viento', icon: 'mdi:weather-windy', category: 'Clima' },
     { id: 'nieve', text: 'Nieve', icon: 'mdi:weather-snowy', category: 'Clima' },
 
-    // Colores
+    // Fringe: Colores
     { id: 'rojo', text: 'Rojo', icon: 'mdi:circle', category: 'Colores' },
     { id: 'azul', text: 'Azul', icon: 'mdi:circle', category: 'Colores' },
     { id: 'amarillo', text: 'Amarillo', icon: 'mdi:circle', category: 'Colores' },
@@ -212,7 +214,7 @@ const pictogramData = [
     { id: 'gris', text: 'Gris', icon: 'mdi:circle-half-full', category: 'Colores' },
     { id: 'marron', text: 'Marrón', icon: 'mdi:square', category: 'Colores' },
 
-    // Números
+    // Fringe: Números
     { id: 'uno', text: 'Uno', icon: 'mdi:numeric-1-circle', category: 'Números' },
     { id: 'dos', text: 'Dos', icon: 'mdi:numeric-2-circle', category: 'Números' },
     { id: 'tres', text: 'Tres', icon: 'mdi:numeric-3-circle', category: 'Números' },
