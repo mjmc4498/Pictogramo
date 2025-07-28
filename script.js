@@ -202,6 +202,12 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+    document.getElementById('clear-sentence-btn').addEventListener('click', () => {
+        sentenceBar.innerHTML = '';
+        saveSentence();
+        showToast('Frase limpiada.', 'info');
+    });
+
     customModeBtn.addEventListener('click', () => {
         // Reset form for new entry
         addPictogramForm.reset();
