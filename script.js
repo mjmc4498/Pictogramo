@@ -226,39 +226,42 @@ document.addEventListener('DOMContentLoaded', () => {
     const suggestionRules = [
         {
             condition: (sentence) => sentence.length === 0,
-            suggestions: () => pictograms.filter(p => p.category === 'Personas')
-        },
-        {
-            condition: (sentence) => sentence.length === 2 && sentence[0].id === 'yo' && sentence[1].id === 'quiero',
-            suggestions: () => pictograms.filter(p => ['Comida', 'Juguetes', 'Acciones'].includes(p.category) && p.id !== 'quiero')
+            suggestions: () => pictograms.filter(p => p.category === 'Personas' || p.category === 'Negación y afirmación')
         },
         {
             condition: (sentence) => {
-                const lastPictogram = sentence[sentence.length - 1];
-                return lastPictogram && lastPictogram.category === 'Personas';
+                const last = sentence[sentence.length - 1];
+                return last && (last.category === 'Personas' || last.category === 'Familia y relaciones');
             },
-            suggestions: () => pictograms.filter(p => p.category === 'Acciones')
+            suggestions: () => pictograms.filter(p => p.category === 'Acciones' || p.category === 'Verbos básicos')
         },
         {
             condition: (sentence) => {
-                const lastPictogram = sentence[sentence.length - 1];
-                return lastPictogram && lastPictogram.id === 'ir';
+                const last = sentence[sentence.length - 1];
+                return last && (last.category === 'Acciones' || last.category === 'Verbos básicos');
             },
-            suggestions: () => pictograms.filter(p => p.category === 'Lugares')
+            suggestions: () => pictograms.filter(p => ['Objetos', 'Comida y bebida', 'Lugares', 'Animales', 'Personas', 'Negación y afirmación'].includes(p.category))
         },
         {
             condition: (sentence) => {
-                const lastPictogram = sentence[sentence.length - 1];
-                return lastPictogram && lastPictogram.category === 'Acciones';
+                const last = sentence[sentence.length - 1];
+                return last && (last.category === 'Objetos' || last.category === 'Comida y bebida' || last.category === 'Animales');
             },
-            suggestions: () => pictograms.filter(p => ['Objetos', 'Comida', 'Lugares'].includes(p.category))
+            suggestions: () => pictograms.filter(p => p.category === 'Acciones' || p.category === 'Verbos básicos' || p.category === 'Negación y afirmación')
         },
         {
             condition: (sentence) => {
-                const lastPictogram = sentence[sentence.length - 1];
-                return lastPictogram && ['Conceptos', 'Sentimientos'].includes(lastPictogram.category);
+                const last = sentence[sentence.length - 1];
+                return last && last.category === 'Emociones';
             },
-            suggestions: () => pictograms.filter(p => ['Personas', 'Acciones'].includes(p.category))
+            suggestions: () => pictograms.filter(p => p.category === 'Personas' || p.category === 'Verbos básicos')
+        },
+        {
+            condition: (sentence) => {
+                const last = sentence[sentence.length - 1];
+                return last && last.category === 'Lugares';
+            },
+            suggestions: () => pictograms.filter(p => p.category === 'Acciones' || p.category === 'Verbos básicos')
         }
     ];
 
