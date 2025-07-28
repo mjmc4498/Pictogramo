@@ -15,8 +15,13 @@
         <h1>Sistema de Pictogramas Interactivo</h1>
     </header>
     <main class="container mt-4">
-        <div id="category-filter-bar" class="text-center mb-4"></div>
-        <div id="pictogram-grid" class="grid-container"></div>
+        <div id="category-view" class="grid-container">
+            <!-- Category cards will be inserted here -->
+        </div>
+        <div id="pictogram-view" class="d-none">
+            <button id="back-to-categories-btn" class="btn btn-secondary mb-3"><iconify-icon icon="mdi:arrow-left"></iconify-icon> Volver a Categorías</button>
+            <div id="pictogram-grid" class="grid-container"></div>
+        </div>
         <hr>
         <div class="d-flex justify-content-center align-items-center mb-2">
             <h2 class="text-center mb-0 me-3">Frase Actual</h2>
@@ -34,26 +39,30 @@
         <div class="modal-content">
             <span class="close-btn">&times;</span>
             <h2>Añadir Nuevo Pictograma</h2>
-            <form id="add-pictogram-form" class="row g-3">
-                <div class="col-12">
-                    <label for="pictogram-text" class="form-label">Texto del Pictograma</label>
-                    <input type="text" class="form-control" id="pictogram-text" placeholder="Ej: Pelota" required>
+            <form id="add-pictogram-form">
+                <div class="creation-block">
+                    <div id="image-icon-preview" class="mb-3">
+                        <iconify-icon icon="mdi:image-plus" style="font-size: 5rem; color: #ccc;"></iconify-icon>
+                    </div>
+                    <div class="mb-3">
+                        <label for="pictogram-icon" class="form-label">Icono de Iconify</label>
+                        <input type="text" class="form-control" id="pictogram-icon" placeholder="ej: mdi:car">
+                    </div>
+                    <div class="mb-3">
+                        <label for="pictogram-image" class="form-label">O Subir Imagen</label>
+                        <input type="file" class="form-control" id="pictogram-image" accept="image/*">
+                    </div>
                 </div>
-                <div class="col-12">
-                    <label for="pictogram-category" class="form-label">Categoría</label>
-                    <input type="text" class="form-control" id="pictogram-category" placeholder="Ej: Juguetes">
-                </div>
-                <div class="col-12">
-                    <label for="pictogram-icon" class="form-label">Icono de Iconify (ej: mdi:car)</label>
-                    <input type="text" class="form-control" id="pictogram-icon" placeholder="Escribe el nombre del icono">
-                </div>
-                <div class="col-12">
-                    <label for="pictogram-image" class="form-label">O Subir una Imagen (Opcional)</label>
-                    <input type="file" class="form-control" id="pictogram-image" accept="image/*">
-                    <img id="image-preview" src="#" alt="Vista previa de la imagen" class="img-thumbnail mt-2" style="display:none; max-width: 100px;">
-                </div>
-                <div class="col-12">
-                    <button type="submit" class="btn btn-primary w-100">Añadir Pictograma</button>
+                <div class="creation-block">
+                     <div class="mb-3">
+                        <label for="pictogram-text" class="form-label">Texto del Pictograma</label>
+                        <input type="text" class="form-control" id="pictogram-text" placeholder="Ej: Pelota" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="pictogram-category" class="form-label">Categoría</label>
+                        <input type="text" class="form-control" id="pictogram-category" placeholder="Ej: Juguetes">
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100 mt-3">Añadir Pictograma</button>
                 </div>
             </form>
         </div>

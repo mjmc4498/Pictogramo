@@ -1,4 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
+    const categoryView = document.getElementById('category-view');
+    const pictogramView = document.getElementById('pictogram-view');
     const pictogramGrid = document.getElementById('pictogram-grid');
     const sentenceBar = document.getElementById('sentence-bar');
     const customModeBtn = document.getElementById('custom-mode-btn');
@@ -10,10 +12,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function initialize() {
         loadCustomPictograms();
-        renderPictograms();
-        renderCategoryFilters();
+        renderCategoryView();
         loadSentence();
         setupDragAndDrop();
+
+        document.getElementById('back-to-categories-btn').addEventListener('click', () => {
+            pictogramView.classList.add('d-none');
+            categoryView.classList.remove('d-none');
+        });
     }
 
     function speak(text, lang = 'es-ES') {
@@ -106,11 +112,9 @@ document.addEventListener('DOMContentLoaded', () => {
         return card;
     }
 
-    function renderPictograms(category = 'all') {
+    function renderPictograms(category) {
         pictogramGrid.innerHTML = '';
-        const filteredPictograms = category === 'all'
-            ? pictograms
-            : pictograms.filter(p => p.category === category);
+        const filteredPictograms = pictograms.filter(p => p.category === category);
 
         filteredPictograms.forEach(pictogram => {
             const card = createPictogramCard(pictogram);
@@ -118,26 +122,21 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    function renderCategoryFilters() {
-        const categoryFilterBar = document.getElementById('category-filter-bar');
-        const categories = ['all', ...new Set(pictograms.map(p => p.category))];
+    function renderCategoryView() {
+        categoryView.innerHTML = '';
+        const categories = [...new Set(pictograms.map(p => p.category))];
 
-        categoryFilterBar.innerHTML = '';
         categories.forEach(category => {
-            const button = document.createElement('button');
-            button.className = 'btn btn-secondary me-2';
-            button.textContent = category.charAt(0).toUpperCase() + category.slice(1);
-            button.dataset.category = category;
-            button.addEventListener('click', (e) => {
+            const categoryCard = document.createElement('div');
+            categoryCard.className = 'pictogram-card';
+            categoryCard.innerHTML = `<p>${category}</p>`;
+            categoryCard.addEventListener('click', () => {
+                categoryView.classList.add('d-none');
+                pictogramView.classList.remove('d-none');
                 renderPictograms(category);
-                // Highlight active button
-                categoryFilterBar.querySelectorAll('.btn').forEach(btn => btn.classList.remove('btn-primary'));
-                e.target.classList.add('btn-primary');
             });
-            categoryFilterBar.appendChild(button);
+            categoryView.appendChild(categoryCard);
         });
-        // Set 'all' as active by default
-        categoryFilterBar.querySelector('[data-category="all"]').classList.add('btn-primary');
     }
 
     function handlePictogramSelection(pictogram, card) {
@@ -368,15 +367,24 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     document.getElementById('pictogram-image').addEventListener('change', (e) => {
-        const preview = document.getElementById('image-preview');
+        const previewContainer = document.getElementById('image-icon-preview');
         const file = e.target.files[0];
         if (file) {
             const reader = new FileReader();
             reader.onload = function(event) {
-                preview.src = event.target.result;
-                preview.style.display = 'block';
+                previewContainer.innerHTML = `<img src="${event.target.result}" alt="Vista previa">`;
             }
             reader.readAsDataURL(file);
+        }
+    });
+
+    document.getElementById('pictogram-icon').addEventListener('input', (e) => {
+        const previewContainer = document.getElementById('image-icon-preview');
+        const iconName = e.target.value;
+        if (iconName) {
+            previewContainer.innerHTML = `<iconify-icon icon="${iconName}" style="font-size: 5rem;"></iconify-icon>`;
+        } else {
+            previewContainer.innerHTML = `<iconify-icon icon="mdi:image-plus" style="font-size: 5rem; color: #ccc;"></iconify-icon>`;
         }
     });
 
